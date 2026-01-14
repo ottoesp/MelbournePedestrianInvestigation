@@ -14,8 +14,6 @@ def clean_sensor_locations(locations: pd.DataFrame) -> pd.DataFrame:
     # Dataset includes the same id for multiple directions of a single sensor
     locations = locations.drop_duplicates(subset=['sensor_id'])
 
-    locations = locations.set_index('sensor_id')
-
     return locations
 
 def clean_sensor_counts(counts: pd.DataFrame) -> pd.DataFrame:
