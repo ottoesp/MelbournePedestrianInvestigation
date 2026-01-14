@@ -34,7 +34,8 @@ def load_sensor_counts() -> pd.DataFrame:
 def load_processed() -> pd.DataFrame:
     if PROCESSED_DATA_FILE.exists():
         sensor_counts = pd.read_parquet(PROCESSED_DATA_FILE)
-        
+        sensor_counts['sensor_id'] = sensor_counts['sensor_id'].astype('category')
+
         return sensor_counts
     else:
         raise FileExistsError("Processed data does not exist")
