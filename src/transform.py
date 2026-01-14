@@ -1,14 +1,25 @@
 import pandas as pd
-from .config import FIRST_LOCKDOWN_START, LAST_LOCKDOWN_END
 
 def get_loc_counts(sensor_locations: pd.DataFrame, sensor_counts: pd.DataFrame) -> pd.DataFrame:
+    # Join location and count
     loc_counts = pd.merge(
         sensor_locations, sensor_counts,
         how='inner', on='sensor_id'
     )
     return loc_counts
 
-def categorise_as_pre_and_post_lockdowns(counts: pd.DataFrame) -> pd.DataFrame:
-    # counts = counts[(counts['sensing_date_time'] < FIRST_LOCKDOWN_START) | (LAST_LOCKDOWN_END < counts['sensing_date_time'])]
-    counts = counts[(counts['sensing_date_time'] < FIRST_LOCKDOWN_START) | (LAST_LOCKDOWN_END < counts['sensing_date_time'])]
-    return counts
+def aggregate_daily_count(counts: pd.DataFrame) -> pd.DataFrame:
+    counts['sensing_date_time'] = counts['sensing_date_time'].dt.normalize() # pyright: ignore[reportAttributeAccessIssue]
+    daily_count = (
+        counts.groupby(['sensor_id', 'sensing_date_time'])
+        .sum()
+    )
+    
+    daily_count = daily_count.reset_index()
+
+    daily_count = daily_count.rename(columns={
+        'sensing_date_time' : 'sensing_date',
+        'hourly_count' : 'daily_count'
+    })
+
+    return daily_count

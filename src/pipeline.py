@@ -4,23 +4,21 @@ import sys
 
 from .load import  load_historic_sensor_counts, load_sensor_locations
 from .clean import clean_historic_sensor_counts, clean_sensor_locations
-from .transform import get_loc_counts, categorise_as_pre_and_post_lockdowns
+from .transform import aggregate_daily_count
 
 from .config import PROCESSED_DATA_FILE
 
 def run_pipeline(write_to_file = False) -> pd.DataFrame:
-    sensor_locations_raw = load_sensor_locations()
     sensor_counts_raw = load_historic_sensor_counts()
 
-    sensor_locations = clean_sensor_locations(sensor_locations_raw)
-    sensor_counts = clean_historic_sensor_counts(sensor_counts_raw)
-
-    sensor_count_by_location = get_loc_counts(sensor_locations, sensor_counts)
-
+    sensor_counts_clean = clean_historic_sensor_counts(sensor_counts_raw)
+    counts = aggregate_daily_count(sensor_counts_clean)
+    
+    print(counts.info())
     if write_to_file:
-        sensor_count_by_location.to_parquet(path=PROCESSED_DATA_FILE)
+        counts.to_parquet(path=PROCESSED_DATA_FILE)
 
-    return sensor_count_by_location
+    return counts
 
 if __name__ == "__main__":
     write_to_file = False

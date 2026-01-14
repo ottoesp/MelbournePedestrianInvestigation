@@ -8,7 +8,7 @@ def clean_sensor_locations(locations: pd.DataFrame) -> pd.DataFrame:
         locations['installation_date']
     )
     locations = locations.drop(
-        columns=['note', 'direction_1', 'direction_2', 'latitude', 'longitude', 'status']
+        columns=['note', 'direction_1', 'direction_2', 'latitude', 'longitude', 'status', 'location_type']
     )
 
     # Dataset includes the same id for multiple directions of a single sensor
