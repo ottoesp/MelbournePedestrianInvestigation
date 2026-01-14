@@ -20,4 +20,5 @@ PROJECT_ROOT = SRC_DIR.parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / 'data' / 'raw'
 
 PROCESSED_DATA_DIR = PROJECT_ROOT / 'data' / 'processed'
-PROCESSED_DATA_FILE = PROCESSED_DATA_DIR / 'processed.parquet'
+PROCESSED_COUNTS_FILE = PROCESSED_DATA_DIR / 'counts.parquet'
+PROCESSED_LOCATIONS_FILE = PROCESSED_DATA_DIR / 'locations.parquet'

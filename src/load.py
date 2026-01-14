@@ -1,5 +1,5 @@
 import pandas as pd
-from .config import RAW_DATA_DIR, PROCESSED_DATA_FILE
+from .config import RAW_DATA_DIR, PROCESSED_COUNTS_FILE
 
 def load_sensor_locations() -> pd.DataFrame:
     sensor_locations_path =  RAW_DATA_DIR / 'pedestrian-counting-system-sensor-locations.parquet'
@@ -30,12 +30,3 @@ def load_sensor_counts() -> pd.DataFrame:
         return sensor_counts
     else:
         raise FileExistsError("Sensor Count Data does not exist")
-    
-def load_processed() -> pd.DataFrame:
-    if PROCESSED_DATA_FILE.exists():
-        sensor_counts = pd.read_parquet(PROCESSED_DATA_FILE)
-        sensor_counts['sensor_id'] = sensor_counts['sensor_id'].astype('category')
-
-        return sensor_counts
-    else:
-        raise FileExistsError("Processed data does not exist")
