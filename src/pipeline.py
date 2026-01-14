@@ -1,25 +1,30 @@
 
 import pandas as pd
+import sys
 
-from .load import load_sensor_counts, load_sensor_locations
-from .clean import clean_sensor_counts, clean_sensor_locations
+from .load import  load_historic_sensor_counts, load_sensor_locations
+from .clean import clean_historic_sensor_counts, clean_sensor_locations
 from .transform import get_loc_counts, categorise_as_pre_and_post_lockdowns
 
-def run_pipeline():
+from .config import PROCESSED_DATA_FILE
+
+def run_pipeline(write_to_file = False) -> pd.DataFrame:
     sensor_locations_raw = load_sensor_locations()
-    sensor_counts_raw = load_sensor_counts()
+    sensor_counts_raw = load_historic_sensor_counts()
 
     sensor_locations = clean_sensor_locations(sensor_locations_raw)
-    sensor_counts = clean_sensor_counts(sensor_counts_raw)
+    sensor_counts = clean_historic_sensor_counts(sensor_counts_raw)
 
-    loc_counts = get_loc_counts(sensor_locations, sensor_counts)
-    print(loc_counts.info())
+    sensor_count_by_location = get_loc_counts(sensor_locations, sensor_counts)
 
-    relative_to_lockdowns = categorise_as_pre_and_post_lockdowns(loc_counts)
-    print(relative_to_lockdowns.info())
+    if write_to_file:
+        sensor_count_by_location.to_parquet(path=PROCESSED_DATA_FILE)
 
-    print(loc_counts['sensing_date_time'].min())
-    print(sensor_locations['installation_date'].min())
+    return sensor_count_by_location
 
 if __name__ == "__main__":
-    run_pipeline()
+    write_to_file = False
+    if '-w' in sys.argv[1:]:
+        write_to_file = True    
+
+    run_pipeline(write_to_file)
