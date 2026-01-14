@@ -12,7 +12,7 @@ def aggregate_daily_count(counts: pd.DataFrame) -> pd.DataFrame:
     counts['sensing_date_time'] = counts['sensing_date_time'].dt.normalize() # pyright: ignore[reportAttributeAccessIssue]
     daily_count = (
         counts.groupby(['sensor_id', 'sensing_date_time'])
-        .sum()
+        .sum(numeric_only=True)
     )
     
     daily_count = daily_count.reset_index()
