@@ -1,4 +1,5 @@
 import pandas as pd
+from pathlib import Path
 
 # Victorian government COVID-19 lockdown dates
 # Source at https://lds.inspiredesign.au/timeline/
@@ -13,3 +14,10 @@ for col in ['lockdown_start', 'lockdown_end']:
 
 FIRST_LOCKDOWN_START = LOCKDOWN_DATES.min()['lockdown_start']
 LAST_LOCKDOWN_END = LOCKDOWN_DATES.max()['lockdown_end']
+
+SRC_DIR = Path(__file__).resolve()
+PROJECT_ROOT = SRC_DIR.parent.parent
+RAW_DATA_DIR = PROJECT_ROOT / 'data' / 'raw'
+
+PROCESSED_DATA_DIR = PROJECT_ROOT / 'data' / 'processed'
+PROCESSED_DATA_FILE = PROCESSED_DATA_DIR / 'processed.parquet'
