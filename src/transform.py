@@ -10,9 +10,15 @@ def get_loc_counts(sensor_locations: pd.DataFrame, sensor_counts: pd.DataFrame) 
 
 def aggregate_daily_count(counts: pd.DataFrame) -> pd.DataFrame:
     counts['sensing_date_time'] = counts['sensing_date_time'].dt.normalize() # pyright: ignore[reportAttributeAccessIssue]
+
+    aggregation_rules = {
+        'day': 'first',
+        'hourly_count' : 'sum'
+    }
+
     daily_count = (
         counts.groupby(['sensor_id', 'sensing_date_time'])
-        .sum(numeric_only=True)
+        .agg(aggregation_rules)
     )
     
     daily_count = daily_count.reset_index()

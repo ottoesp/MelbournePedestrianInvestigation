@@ -6,6 +6,7 @@ def load_processed_count() -> pd.DataFrame:
     if PROCESSED_COUNTS_FILE.exists():
         sensor_counts = pd.read_parquet(PROCESSED_COUNTS_FILE)
         sensor_counts['sensor_id'] = sensor_counts['sensor_id'].astype('category')
+        sensor_counts['day'] = sensor_counts['day'].astype('category')
 
         return sensor_counts
     else:
