@@ -3,4 +3,4 @@ data/*
 venv/
 melbourne_cbd_3d.html
 colourbar.svg
-melbourne_cbd_3d_data.json
+pedestrian_data.json
