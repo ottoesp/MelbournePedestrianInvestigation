@@ -30,3 +30,5 @@ RAW_DATA_DIR = PROJECT_ROOT / 'data' / 'raw'
 PROCESSED_DATA_DIR = PROJECT_ROOT / 'data' / 'processed'
 PROCESSED_COUNTS_FILE = PROCESSED_DATA_DIR / 'counts.parquet'
 PROCESSED_LOCATIONS_FILE = PROCESSED_DATA_DIR / 'locations.parquet'
+
+WEBAPP_RESOURCES_DIR = PROJECT_ROOT / 'webapp' / 'resources'
