@@ -1,6 +1,4 @@
 data/*
 *.pyc
 venv/
-melbourne_cbd_3d.html
-colourbar.svg
-pedestrian_data.json
+resources/
