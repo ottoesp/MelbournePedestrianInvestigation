@@ -15,7 +15,8 @@ async function loadSensorPlot(sensorId, description) {
     }
 }
 
-loadData().then(data => {
+export async function initMap() {
+    const data = await loadData();
 
     const columns = new ColumnLayer({
         id: "columns",
@@ -82,4 +83,6 @@ loadData().then(data => {
             
         }
     });
-});
+
+}
+
