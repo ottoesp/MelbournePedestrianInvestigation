@@ -16,21 +16,31 @@ def clean_sensor_locations(locations: pd.DataFrame) -> pd.DataFrame:
 
     return locations
 
-def clean_sensor_counts(counts: pd.DataFrame) -> pd.DataFrame:
-    counts['sensing_date_time'] = (
-        pd.to_datetime(counts['sensing_date'])
-        + pd.to_timedelta(counts['hourday'], unit='h')
-    )
-    counts = counts.drop(
-        # Dropping location as it is redundant with sensor_locations dataset
-        columns=['direction_1', 'direction_2', 'location', 'sensing_date', 'hourday']
-    )
+def clean_current_sensor_counts(counts: pd.DataFrame) -> pd.DataFrame:
+    # Rename and convert types first
     counts = counts.rename(columns={
-        'total_of_directions' : 'count',
-        'id' : 'count_id'
+        'sensing_date': 'sensing_date_time',
+        'id': 'count_id',
+        'location_id' : 'sensor_id',
+        'pedestriancount' : 'hourly_count',
     })
 
+    counts['sensing_date_time'] = (
+        pd.to_datetime(counts['sensing_date_time'])
+        + pd.to_timedelta(counts['hourday'], unit='h')
+    )
+
+    counts['day'] = counts['sensing_date_time'].dt.day_name()
+
+    counts = counts.drop(
+        # Dropping location as it is redundant with sensor_locations dataset
+        columns=['direction_1', 'direction_2', 'location', 'hourday', 'location', 'sensor_name']
+    )
+
+    counts = counts.set_index('count_id')
+
     return counts
+
 
 def clean_historic_sensor_counts(counts: pd.DataFrame) -> pd.DataFrame:
     

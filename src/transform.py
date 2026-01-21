@@ -29,3 +29,6 @@ def aggregate_daily_count(counts: pd.DataFrame) -> pd.DataFrame:
     })
 
     return daily_count
+
+def join_historic_current_counts(historic: pd.DataFrame, current: pd.DataFrame) -> pd.DataFrame:
+    return pd.concat([historic, current])
