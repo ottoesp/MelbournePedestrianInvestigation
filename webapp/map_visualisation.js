@@ -1,6 +1,4 @@
-const { Deck } = deck;
-const { ColumnLayer } = deck;
-const { TileLayer } = deck;
+const { ColumnLayer, DeckGL, MapView, Deck } = deck;
 
 async function loadData() {
     const response = await fetch("resources/pedestrian_data.json");
@@ -8,30 +6,6 @@ async function loadData() {
 }
 
 loadData().then(data => {
-
-    const tiles = new TileLayer({
-        id: "osm-tiles",
-        data: "https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
-        minZoom: 0,
-        maxZoom: 19,
-        tileSize: 256,
-        renderSubLayers: props => {
-            const {
-                bbox: { west, south, east, north }
-            } = props.tile;
-
-            return new deck.BitmapLayer(props, {
-                data: null,
-                image: props.data,
-                bounds: [
-                    west,
-                    south,
-                    east,
-                    north
-                ]
-            });
-        }
-    });
 
     const columns = new ColumnLayer({
         id: "columns",
@@ -44,13 +18,18 @@ loadData().then(data => {
 
         getPosition: d => [d.longitude, d.latitude],
         getElevation: d => d.absolute_change,
-        getFillColor: d => d.colour,
+        getFillColor: d => d.colour
     });
 
-    new Deck({
-        parent: document.getElementById("deck-container"),
-        useDevicePixels: true,
-        
+    new DeckGL({
+        // canvas: document.getElementById('deck-canvas'),
+        container: document.getElementById('deck-container'),
+        views: new MapView({
+            repeat: true,
+            // nearZMultiplier: 0.1,
+            // farZMultiplier: 1.01,
+            // orthographic: false,
+        }),
         initialViewState: {
             longitude: 144.96,
             latitude: -37.813,
@@ -58,7 +37,6 @@ loadData().then(data => {
             pitch: 55,
             bearing: -60
         },
-
         controller: {
             dragPan: false,
             scrollZoom: false,
@@ -68,9 +46,15 @@ loadData().then(data => {
             dragRotate: true,
             touchRotate: true
         },
-
-        layers: [tiles, columns],
-
+        onClick: (info) => {
+            if (info.object) {
+                console.log("clicked column:", info.object);
+            }
+        },
+        mapStyle: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+        layers: [
+            columns
+        ],
         getTooltip: ({ object }) =>
             object && `${object.sensor_description}\nChange: ${object.percentage_change}%`
     });
