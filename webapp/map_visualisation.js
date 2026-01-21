@@ -26,16 +26,13 @@ loadData().then(data => {
         container: document.getElementById('deck-container'),
         views: new MapView({
             repeat: true,
-            // nearZMultiplier: 0.1,
-            // farZMultiplier: 1.01,
-            // orthographic: false,
         }),
         initialViewState: {
             longitude: 144.96,
             latitude: -37.813,
-            zoom: 14.3,
-            pitch: 55,
-            bearing: -60
+            zoom: 14.2,
+            pitch: 60,
+            bearing: -60,
         },
         controller: {
             dragPan: false,
