@@ -21,30 +21,33 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    deploy:
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: webapp
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v5
-            - name: Set up Node
-              uses: actions/setup-node@v6
-              with:
-                  node-version: lts/*
-                  cache: "npm"
-                  cache-dependency-path: "webapp/package-lock.json"
-            - name: Install dependencies
-              run: npm ci
-            - name: Build
-              run: npm run build
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v4
-              with:
-                  path: "./webapp/dist"
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: webapp
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: webapp/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./webapp/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
