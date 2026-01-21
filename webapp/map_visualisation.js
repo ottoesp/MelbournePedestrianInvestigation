@@ -67,7 +67,19 @@ loadData().then(data => {
         layers: [
             columns
         ],
-        getTooltip: ({ object }) =>
-            object && `${object.sensor_description}\nChange: ${object.percentage_change}%`
+        getTooltip: ({ object }) => {
+            return object && {
+                html: `<p>${object.sensor_description}</p><p>Change: ${object.percentage_change}%</p>`,
+                style: {
+                    'background-color': '#f8f9fa',
+                    'border' : '1px solid #868E96',
+                    'border-radius': '.25rem',
+                    'opacity' : '0.95',
+                    'color' : '#000'
+                }
+
+            }
+            
+        }
     });
 });
