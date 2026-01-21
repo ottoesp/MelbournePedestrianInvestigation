@@ -21,11 +21,11 @@ def load_processed_locations() -> pd.DataFrame:
     else:
         raise FileExistsError("Processed locations does not exist")
     
-def load_location_effects() -> pd.DataFrame:
+def load_sensor_effects() -> pd.DataFrame:
     if (PROCESSED_DATA_DIR / 'location_effects.parquet').exists():
-        sensor_counts = pd.read_parquet(PROCESSED_DATA_DIR / 'location_effects.parquet')
-        sensor_counts['sensor_id'] = sensor_counts['sensor_id'].astype('category')
+        sensor_effects = pd.read_parquet(PROCESSED_DATA_DIR / 'location_effects.parquet')
+        sensor_effects['sensor_id'] = sensor_effects['sensor_id'].astype('category')
 
-        return sensor_counts
+        return sensor_effects
     else:
-        raise FileExistsError("Processed location effects does not exist")
+        raise FileExistsError("Processed sensor effects does not exist")
