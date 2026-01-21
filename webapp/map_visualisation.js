@@ -46,6 +46,14 @@ loadData().then(data => {
         onClick: (info) => {
             if (info.object) {
                 console.log("clicked column:", info.object);
+                const sensorId = info.object.sensor_id;
+                const svgPath = `resources/sensorplots/${sensorId}_sensor_plot.svg`;
+                const img = document.getElementById('sensor-plot-image');
+                if (img) {
+                    img.src = svgPath;
+                    img.alt = `Sensor plot for ${info.object.sensor_description}`;
+                    img.style.display = 'block';
+                }
             }
         },
         mapStyle: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
