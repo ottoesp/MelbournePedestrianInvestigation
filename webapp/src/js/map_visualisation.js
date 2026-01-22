@@ -1,12 +1,12 @@
 const { ColumnLayer, DeckGL, MapView, Deck } = deck;
 
 async function loadData() {
-    const response = await fetch("/pedestrian_data.json");
+    const response = await fetch(`${import.meta.env.BASE_URL}pedestrian_data.json`);
     return response.json();
 }
 
 async function loadSensorPlot(sensorId, description) {
-    const svgPath = `/sensorplots/${sensorId}_sensor_plot.svg`;
+    const svgPath = `${import.meta.env.BASE_URL}sensorplots/${sensorId}_sensor_plot.svg`;
     const img = document.getElementById('sensor-plot-image');
     if (img) {
         img.src = svgPath;
