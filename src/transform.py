@@ -32,3 +32,23 @@ def aggregate_daily_count(counts: pd.DataFrame) -> pd.DataFrame:
 
 def join_historic_current_counts(historic: pd.DataFrame, current: pd.DataFrame) -> pd.DataFrame:
     return pd.concat([historic, current])
+
+def limit_to_selected_years(counts: pd.DataFrame, year_1: int, year_2: int) -> pd.DataFrame:
+    common_sensors = (
+        set(counts[counts['sensing_date'].dt.year == year_1]['sensor_id'].unique()) 
+        & set(counts[counts['sensing_date'].dt.year == year_2]['sensor_id'].unique())
+    )
+
+    # Filter to only those sensors
+    counts_with_common_dates = counts[counts['sensor_id'].isin(common_sensors)]
+
+    # Limit to only 2019 and 2025 with non-zero values
+    selected_counts: pd.DataFrame = (
+        counts_with_common_dates[
+            counts_with_common_dates['sensing_date'].dt.year.isin([year_1, year_2])
+        ].query('daily_count > 0')
+    )
+    selected_counts['year'] = selected_counts['sensing_date'].dt.year.astype('category')
+
+    return selected_counts
+
