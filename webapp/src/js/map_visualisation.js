@@ -70,15 +70,22 @@ export async function initMap() {
         ],
         getTooltip: ({ object }) => {
             return object && {
-                html: `<p>${object.sensor_description}</p><p>Change: ${object.percentage_change}%</p>`,
+                html: `
+                    <div style="padding: 0.25rem 0.5rem; font-size: 0.875rem; line-height: 1.5;">
+                        <strong>${object.sensor_description}</strong><br>
+                        Change: ${object.percentage_change > 0 ? '+' : ''}${object.percentage_change}%
+                    </div>
+                `,
                 style: {
-                    'background-color': '#f8f9fa',
-                    'border' : '1px solid #868E96',
-                    'border-radius': '.25rem',
-                    'opacity' : '0.95',
-                    'color' : '#000'
+                    'background-color': 'var(--bs-tooltip-bg, rgba(255, 255, 255, 0.9))',
+                    'color': '#000',
+                    'border-radius': 'var(--bs-tooltip-border-radius, 0.375rem)',
+                    'font-family': 'var(--bs-body-font-family, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif)',
+                    'max-width': '200px',
+                    'text-align': 'left',
+                    'box-shadow': '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+                    'z-index': '1080'
                 }
-
             }
             
         }
