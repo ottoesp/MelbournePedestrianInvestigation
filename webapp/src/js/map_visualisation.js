@@ -52,7 +52,9 @@ export async function initMap() {
             touchZoom: false,
             keyboard: false,
             dragRotate: true,
-            touchRotate: true
+            touchRotate: true,
+            dragMode: "rotate",
+            interia: true
         },
         onClick: (info) => {
             if (info.object) {
