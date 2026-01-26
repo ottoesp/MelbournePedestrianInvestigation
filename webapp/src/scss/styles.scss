@@ -9,3 +9,17 @@ body {
         opacity: 1;
     }
 }
+
+.mb-20vh {
+    margin-bottom: 20vh;
+}
+
+#deck-container { 
+    position: relative; height: 600px; overflow: hidden; 
+}
+
+#deck-container canvas {
+    position: absolute; inset: 0;
+    width: 100% !important; height: 100% !important;
+    display: block;
+}
