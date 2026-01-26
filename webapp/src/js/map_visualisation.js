@@ -15,11 +15,59 @@ async function loadSensorPlot(sensorId, description) {
     }
 }
 
+const active_controller = {
+    dragPan: false,
+    scrollZoom: false,
+    doubleClickZoom: false,
+    touchZoom: false,
+    keyboard: false,
+    dragRotate: true,
+    touchRotate: false,
+    dragMode: "rotate",
+    interia: true
+}
+
+const inactive_controller = {
+    dragPan: false,
+    scrollZoom: false,
+    doubleClickZoom: false,
+    touchZoom: false,
+    keyboard: false,
+    dragRotate: false,
+    touchRotate: false,
+    dragMode: "rotate",
+    interia: true
+}
+
+function enableMapInteraction(deckgl) {
+    mapInteractionEnabled = true;
+    deckgl.setProps({
+        controller: active_controller
+    });
+
+    const hint = document.getElementById('map-interaction-hint');
+    if (hint) hint.classList.add('d-none');
+}
+
+function disableMapInteraction(deckgl) {
+    mapInteractionEnabled = false;
+    deckgl.setProps({
+        controller: inactive_controller
+    });
+    
+    const hint = document.getElementById('map-interaction-hint');
+    if (hint) hint.classList.remove('d-none');
+}
+
 const viewportWidth = window.innerWidth;
-const zoom = viewportWidth < 768 ? 13.5 : 14.2;  // smaller zoom for mobile/tablet
+const isMobile = viewportWidth < 768;
+const zoom = viewportWidth < 768 ? 13.5 : 14.2;
+
+let mapInteractionEnabled = false;
 
 export async function initMap() {
     const data = await loadData();
+    const container = document.getElementById('deck-container');
 
     const columns = new ColumnLayer({
         id: "columns",
@@ -35,8 +83,8 @@ export async function initMap() {
         getFillColor: d => d.colour
     });
 
-    new DeckGL({
-        container: document.getElementById('deck-container'),
+    const deckgl = new DeckGL({
+        container: container,
         views: new MapView({
             repeat: true,
         }),
@@ -47,17 +95,7 @@ export async function initMap() {
             pitch: 60,
             bearing: -60,
         },
-        controller: {
-            dragPan: false,
-            scrollZoom: false,
-            doubleClickZoom: false,
-            touchZoom: false,
-            keyboard: false,
-            dragRotate: true,
-            touchRotate: true,
-            dragMode: "rotate",
-            interia: true
-        },
+        controller: isMobile ? inactive_controller : active_controller,
         onClick: (info) => {
             if (info.object) {
                 const sensorId = info.object.sensor_id;
@@ -91,9 +129,27 @@ export async function initMap() {
                     'z-index': '1080'
                 }
             }
-            
         }
     });
 
+    // Initialize mobile interaction state and set up double-click listener
+    if (isMobile) {
+        // Show hint initially
+        disableMapInteraction(deckgl);
+        
+        let lastClickTime = 0;
+        container.addEventListener('click', () => {
+            const now = Date.now();
+            if (now - lastClickTime < 300) {
+                // Double-click detected
+                if (mapInteractionEnabled) {
+                    disableMapInteraction(deckgl);
+                } else {
+                    enableMapInteraction(deckgl);
+                }
+            }
+            lastClickTime = now;
+        });
+    }
 }
 
