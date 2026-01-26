@@ -33,7 +33,6 @@ export async function initMap() {
     });
 
     new DeckGL({
-        // canvas: document.getElementById('deck-canvas'),
         container: document.getElementById('deck-container'),
         views: new MapView({
             repeat: true,
