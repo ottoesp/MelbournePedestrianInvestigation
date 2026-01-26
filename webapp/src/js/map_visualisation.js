@@ -15,6 +15,9 @@ async function loadSensorPlot(sensorId, description) {
     }
 }
 
+const viewportWidth = window.innerWidth;
+const zoom = viewportWidth < 768 ? 13.5 : 14.2;  // smaller zoom for mobile/tablet
+
 export async function initMap() {
     const data = await loadData();
 
@@ -40,7 +43,7 @@ export async function initMap() {
         initialViewState: {
             longitude: 144.96,
             latitude: -37.813,
-            zoom: 14.2,
+            zoom: zoom,
             pitch: 60,
             bearing: -60,
         },
