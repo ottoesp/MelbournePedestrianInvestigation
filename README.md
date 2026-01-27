@@ -5,4 +5,4 @@ the effect of the pandemic period on pedestrian traffic and quantify our changin
 
 As an undergraduate maths student this has really extended my knowledge from uni, involving some new statistical techniques such as Linear Mixed Models. 
 
-I'm still working on this but if you want to have a look my main branch hosts to ottoesperson.com, feel free to check out my progress :)
+I'm still working on this but if you want to have a look my main branch is hosted [here](ottoesperson.com), feel free to check out my progress :)
