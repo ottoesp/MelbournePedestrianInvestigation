@@ -4,11 +4,11 @@ import sys
 
 from .load import  load_historic_sensor_counts, load_sensor_locations, load_sensor_counts
 from .clean import clean_historic_sensor_counts, clean_sensor_locations, clean_current_sensor_counts
-from .transform import aggregate_daily_count, join_historic_current_counts, limit_to_selected_years
+from .transform import aggregate_daily_count, join_historic_current_counts, limit_to_selected_years, drop_unlocated_sensors
 
 from .config import PROCESSED_COUNTS_FILE, PROCESSED_LOCATIONS_FILE, PROCESSED_DATA_DIR
 
-def run_counts_pipeline(write_to_file = False) -> pd.DataFrame:
+def run_counts_pipeline() -> tuple[pd.DataFrame, pd.DataFrame]:
     historic_counts_raw = load_historic_sensor_counts()
     historic_counts_clean = clean_historic_sensor_counts(historic_counts_raw)
 
@@ -23,25 +23,32 @@ def run_counts_pipeline(write_to_file = False) -> pd.DataFrame:
     print(counts.info())
     print(selected_counts.info())
 
+    return counts, selected_counts
+
+def run_locations_pipeline() -> pd.DataFrame:
+    locations_raw = load_sensor_locations()
+    locations = clean_sensor_locations(locations_raw)
+
+    
+
+    return locations
+
+def run_pipline(write_to_file = False):
+    counts, selected_counts = run_counts_pipeline()
+    locations = run_locations_pipeline()
+
+    selected_counts = drop_unlocated_sensors(selected_counts, locations)
+
     if write_to_file:
         counts.to_parquet(path=PROCESSED_COUNTS_FILE)
         selected_counts.to_parquet(path=PROCESSED_DATA_DIR / 'selected_counts.parquet')
 
-    return counts
-
-def run_locations_pipeline(write_to_file = False) -> pd.DataFrame:
-    locations_raw = load_sensor_locations()
-    locations = clean_sensor_locations(locations_raw)
-
     if write_to_file:
         locations.to_parquet(path=PROCESSED_LOCATIONS_FILE)
-
-    return locations
 
 if __name__ == "__main__":
     write_to_file = False
     if '-w' in sys.argv[1:]:
         write_to_file = True    
 
-    run_counts_pipeline(write_to_file)
-    run_locations_pipeline(write_to_file)
+    run_pipline(write_to_file)
