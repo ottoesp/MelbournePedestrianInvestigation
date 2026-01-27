@@ -53,5 +53,5 @@ def limit_to_selected_years(counts: pd.DataFrame, year_1: int, year_2: int) -> p
     return selected_counts
 
 def drop_unlocated_sensors(counts: pd.DataFrame, locations: pd.DataFrame):
-    bad_sensors = pd.Index(counts['sensor_id']).difference(locations['sensor_id'])
+    bad_sensors = pd.Index(counts['sensor_id']).difference(locations['sensor_id']) # type: ignore
     return counts[~counts['sensor_id'].isin(bad_sensors)]
