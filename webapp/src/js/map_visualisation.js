@@ -115,7 +115,7 @@ export async function initMap() {
                 html: `
                     <div style="padding: 0.25rem 0.5rem; font-size: 0.875rem; line-height: 1.5;">
                         <strong>${object.sensor_description}</strong><br>
-                        Change: ${object.percentage_change > 0 ? '+' : ''}${object.percentage_change}%
+                        Change: ${object.percent_year_change.toFixed(2) > 0 ? '+' : ''}${object.percent_year_change.toFixed(2)}%
                     </div>
                 `,
                 style: {
