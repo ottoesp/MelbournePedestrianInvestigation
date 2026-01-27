@@ -16,6 +16,7 @@ body {
 
 #deck-container { 
     position: relative; height: 600px; overflow: hidden; 
+    border-radius: inherit;
 }
 
 #deck-container canvas {

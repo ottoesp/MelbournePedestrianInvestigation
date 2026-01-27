@@ -68,7 +68,17 @@
 
     <div class="row mb-5 g-3">
         <h1 class="col-12 display-5">General Analysis of Pedestrian Traffic</h1>
-
+        
+        <h3 class="col-12">Overall Change</h3>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 pt-3">
+                <img src="/percent_change_plot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img>
+                <div class="card-body"> </div>
+                <div class="card-footer text-center">
+                    <p class="card-text text-secondary">Figure X</p>
+                </div>
+            </div>
+        </div>
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
@@ -78,25 +88,27 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Change in pedestrian counts from 2019 to 2025</h5>
-                    <p class="card-text">2D representation of the same data as the interactive map above</p>
+        <div class="col12 col-md-6 col-lg-4">
+            <div class="card h-100 pt-3">
+                <img src="/counts_map_plot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img>
+                <div class="card-footer text-center">
+                    <p class="card-text text-secondary">Figure X</p>
                 </div>
-                <img src="/2dplot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img>
             </div>
         </div>
-            
+        
+        <h3 class="col-12">Change by Day of the Week</h3>
         <div class="col-12 col-lg-8">
             <div class="card h-100">
                 <div class="card-body">
                     <img src="/day_effects.svg" class="img-fluid mx-auto d-block" alt="Plot of pedestrian traffic in melbourne">
                 </div>
+                <div class="card-footer text-center">
+                    <p class="card-text text-secondary">Figure X</p>
+                </div>
             </div>
         </div>
-
+        
         <div class="col">
             <div class="card h-100">
                 <div class="card-body">
@@ -115,13 +127,13 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Change in Pedestrian Traffic from 2019 to 2025</h3>
-                    <p class="card-text">This interactive map illustrates the locations of pedestrian sensors across Melbourne. At each location, the height of each column corresponds to the percentage change in pedestrian traffic from 2019 to 2025.</p>
+                    <p class="card-text">This interactive map illustrates the locations of pedestrian sensors across Melbourne. At each location, the height of each column corresponds to the change in daily pedestrians counted from 2019 to 2025.</p>
                     <blockquote class="blockquote">
                         <p>Drag the map to rotate <br>Select a location to see further statistics</p>
                     </blockquote>
                 </div>
                 <div id="deck-container" class="overflow-hidden card-img-bot" oncontextmenu="return false;">
-                    <div id="map-interaction-hint" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none bg-dark bg-opacity-75 z-1">
+                    <div id="map-interaction-hint" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none bg-dark bg-opacity-75 overflow-hidden z-1">
                         <p class="text-light">Double tap to enable/disable map rotation</p>
                     </div>
                 </div>

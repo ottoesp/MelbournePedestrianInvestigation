@@ -75,7 +75,7 @@ export async function initMap() {
         diskResolution: 12,
         radius: 20,
         extruded: true,
-        elevationScale: 5,
+        elevationScale: 0.03,
         pickable: true,
 
         getPosition: d => [d.longitude, d.latitude],
@@ -115,7 +115,7 @@ export async function initMap() {
                 html: `
                     <div style="padding: 0.25rem 0.5rem; font-size: 0.875rem; line-height: 1.5;">
                         <strong>${object.sensor_description}</strong><br>
-                        Change: ${object.percentage_change > 0 ? '+' : ''}${object.percentage_change}%
+                        Change: ${object.count_difference_2025_2019 > 0 ? '+' : ''}${Math.round(object.count_difference_2025_2019).toLocaleString()} pedestrians per day
                     </div>
                 `,
                 style: {
