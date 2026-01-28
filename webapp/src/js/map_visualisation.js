@@ -1,18 +1,10 @@
+import { loadSensorPlot } from "./load_sensor_plots";
+
 const { ColumnLayer, DeckGL, MapView, Deck } = deck;
 
 async function loadData() {
     const response = await fetch(`${import.meta.env.BASE_URL}pedestrian_data.json`);
     return response.json();
-}
-
-async function loadSensorPlot(sensorId, description) {
-    const svgPath = `${import.meta.env.BASE_URL}sensorplots/${sensorId}_sensor_plot.svg`;
-    const img = document.getElementById('sensor-plot-image');
-    if (img) {
-        img.src = svgPath;
-        img.alt = `Sensor plot for ${description}`;
-        img.style.display = 'block';
-    }
 }
 
 const active_controller = {
@@ -98,12 +90,9 @@ export async function initMap() {
         controller: isMobile ? inactive_controller : active_controller,
         onClick: (info) => {
             if (info.object) {
-                const sensorId = info.object.sensor_id;
-                const sensorDescripition = info.object.sensor_description;
-                loadSensorPlot(sensorId, sensorDescripition).then(() => {
-                    document.getElementById('sensor_plot_card')
+                loadSensorPlot(info.object);
+                document.getElementById('sensor_plot_container')
                     ?.scrollIntoView({ behavior: "smooth" });
-                })
             }
         },
         mapStyle: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
