@@ -1,6 +1,6 @@
 export async function loadSensorPlot(sensor) {
     const container = document.getElementById('sensor_plot_container');
-    container.scrollIntoView({block: 'center', behavior: "smooth" })
+    container.children[0].scrollIntoView({block: 'center', behavior: "smooth" })
 
     // Add spinners to existing children
     for (const child of container.children) {
