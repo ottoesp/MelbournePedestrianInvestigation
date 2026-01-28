@@ -14,6 +14,9 @@ export async function loadSensorPlot(sensor) {
         spinnerWrapper.appendChild(spinner);
         child.classList.add('position-relative');
         child.prepend(spinnerWrapper);
+
+        const card = child.querySelector('.card');
+        card.classList.add('loading')
     }
     
     // Source new content
@@ -39,7 +42,7 @@ function createCountsPlot(sensor) {
         col.className = 'col-12 col-lg-8';
 
         const card = document.createElement('div');
-        card.className = 'card h-100 pt-3';
+        card.className = 'card h-100 pt-3 loading';
         
         const img = document.createElement('img');
         img.src = `${import.meta.env.BASE_URL}sensorplots/${sensor.sensor_id}_sensor_plot.svg`;
@@ -60,8 +63,14 @@ function createCountsPlot(sensor) {
         col.appendChild(card);
         
         // Resolve when image loads
-        img.onload = () => resolve(col);
-        img.onerror = () => resolve(col);
+        img.onload = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
+        img.onerror = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
     });
 }
 
@@ -71,7 +80,7 @@ function createDaysPlot(sensor) {
         col.className = 'col-12 col-md-6 col-lg-4';
 
         const card = document.createElement('div');
-        card.className = 'card h-100 pt-3';
+        card.className = 'card h-100 pt-3 loading';
         
         const img = document.createElement('img');
         img.src = `${import.meta.env.BASE_URL}sensordays/${sensor.sensor_id}_sensordays.svg`;
@@ -92,8 +101,14 @@ function createDaysPlot(sensor) {
         col.appendChild(card);
         
         // Resolve when image loads
-        img.onload = () => resolve(col);
-        img.onerror = () => resolve(col);
+        img.onload = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
+        img.onerror = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
     });
 }
 
@@ -103,7 +118,7 @@ function createFitPlot(sensor) {
         col.className = 'col-12 col-md-12';
 
         const card = document.createElement('div');
-        card.className = 'card h-100 pt-3';
+        card.className = 'card h-100 pt-3 loading';
         
         const img = document.createElement('img');
         img.src = `${import.meta.env.BASE_URL}sensorfits/${sensor.sensor_id}_sensor_fit.svg`;
@@ -124,7 +139,13 @@ function createFitPlot(sensor) {
         col.appendChild(card);
         
         // Resolve when image loads
-        img.onload = () => resolve(col);
-        img.onerror = () => resolve(col);
+        img.onload = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
+        img.onerror = () => {
+            card.classList.remove('loading');
+            resolve(col);
+        };
     });
 }

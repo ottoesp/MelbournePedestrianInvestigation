@@ -27,7 +27,11 @@ body {
 
 .card {
     box-shadow: 0 0 0 0rem rgba(var(--bs-primary-rgb), 0);
-    transition: box-shadow 0.2s ease-out;
+    transition: box-shadow 0.2s ease-out, opacity 0.3s ease-out;
+    
+    &.loading {
+        opacity: 0.5;
+    }
 }
 
 .highlight-ring {
