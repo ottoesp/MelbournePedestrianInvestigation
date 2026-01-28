@@ -1,6 +1,7 @@
 export async function loadSensorPlot(sensor) {
     const container = document.getElementById('sensor_plot_container');
-    
+    container.scrollIntoView({block: 'center', behavior: "smooth" })
+
     // Add spinners to existing children
     for (const child of container.children) {
         const spinnerWrapper = document.createElement('div');
@@ -32,8 +33,6 @@ export async function loadSensorPlot(sensor) {
         card.classList.add('highlight-ring');
         setTimeout(() => card.classList.remove('highlight-ring'), 1000);
     }
-
-    sensor_plot.scrollIntoView({block: 'center', behavior: "smooth" })
 }
 
 function createCountsPlot(sensor) {
