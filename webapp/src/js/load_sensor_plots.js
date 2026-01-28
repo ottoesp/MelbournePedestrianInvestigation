@@ -7,7 +7,7 @@ export async function loadSensorPlot(sensor) {
         spinnerWrapper.className = 'position-absolute top-50 start-50 translate-middle z-2';
         
         const spinner = document.createElement('div');
-        spinner.className = 'spinner-border';
+        spinner.className = 'spinner-border text-primary';
         spinner.setAttribute('role', 'status');
         spinner.innerHTML = '<span class="visually-hidden">Loading...</span>';
         
