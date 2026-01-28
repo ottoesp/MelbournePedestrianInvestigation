@@ -1,10 +1,20 @@
 export async function loadSensorPlot(sensor) {
     const container = document.getElementById('sensor_plot_container');
     
+    // Source new content
     const sensor_plot = await createCountsPlot(sensor);
     const days_plot = await createDaysPlot(sensor)
     const fit_plot = await createFitPlot(sensor)
+    
+    // Replace old content
     container.replaceChildren(sensor_plot, days_plot, fit_plot);
+
+    // Add indicator that new stuff has happened
+    for (const child of container.children) {
+        const card = child.querySelector('.card');
+        card.classList.add('highlight-ring');
+        setTimeout(() => card.classList.remove('highlight-ring'), 1000);
+    }
 
     sensor_plot.scrollIntoView({block: 'center', behavior: "smooth" })
 }
