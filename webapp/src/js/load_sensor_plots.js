@@ -1,11 +1,25 @@
 export async function loadSensorPlot(sensor) {
     const container = document.getElementById('sensor_plot_container');
     
+    // Add spinners to existing children
+    for (const child of container.children) {
+        const spinnerWrapper = document.createElement('div');
+        spinnerWrapper.className = 'position-absolute top-50 start-50 translate-middle z-2';
+        
+        const spinner = document.createElement('div');
+        spinner.className = 'spinner-border';
+        spinner.setAttribute('role', 'status');
+        spinner.innerHTML = '<span class="visually-hidden">Loading...</span>';
+        
+        spinnerWrapper.appendChild(spinner);
+        child.classList.add('position-relative');
+        child.prepend(spinnerWrapper);
+    }
+    
     // Source new content
     const sensor_plot = await createCountsPlot(sensor);
     const days_plot = await createDaysPlot(sensor)
     const fit_plot = await createFitPlot(sensor)
-    
     // Replace old content
     container.replaceChildren(sensor_plot, days_plot, fit_plot);
 
