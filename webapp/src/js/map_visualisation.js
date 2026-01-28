@@ -92,7 +92,7 @@ export async function initMap() {
             if (info.object) {
                 loadSensorPlot(info.object);
                 document.getElementById('sensor_plot_container')
-                    ?.scrollIntoView({ behavior: "smooth" });
+                    ?.scrollIntoView({block: 'end', behavior: "smooth" });
             }
         },
         mapStyle: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
