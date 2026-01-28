@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Melbourne Pedestrian Behaviour</title>
@@ -10,212 +11,293 @@
     <link href="https://unpkg.com/maplibre-gl@^4.0.0/dist/maplibre-gl.css" rel="stylesheet" />
 
     <script>
-    MathJax = {
-        tex: {
-            macros: {
-                RR: '{\\bf R}',
-                bold: ['{\\boldsymbol #1}', 1],
-                b: '{\\boldsymbol b}',
-                x: '{\\boldsymbol x}',
-                z: '{\\boldsymbol z}',
-                bbeta: '{\\boldsymbol {\\beta}}',
+        MathJax = {
+            tex: {
+                macros: {
+                    RR: '{\\bf R}',
+                    bold: ['{\\boldsymbol #1}', 1],
+                    b: '{\\boldsymbol b}',
+                    x: '{\\boldsymbol x}',
+                    z: '{\\boldsymbol z}',
+                    bbeta: '{\\boldsymbol {\\beta}}',
+                },
+                inlineMath: { '[+]': [['$', '$']] },
+                displayMath: [['\\[', '\\]']],
             },
-            inlineMath: {'[+]': [['$', '$']]},
-            displayMath: [['\\[', '\\]']],
-        },
-        chtml: {
-            displayOverflow: 'linebreak',  // break long lines
-            linebreaks: {                  // options for when overflow is linebreak
-                inline: true,                   // true for browser-based breaking of in-line equations
-                width: '100%',                  // a fixed size or a percentage of the container width
-                lineleading: .2,                // the default lineleading in em units
+            chtml: {
+                displayOverflow: 'linebreak',  // break long lines
+                linebreaks: {                  // options for when overflow is linebreak
+                    inline: true,                   // true for browser-based breaking of in-line equations
+                    width: '100%',                  // a fixed size or a percentage of the container width
+                    lineleading: .2,                // the default lineleading in em units
+                }
             }
-        }
-    };
+        };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
     <!-- Hide while css loads -->
     <style>
-        body { display: none; }
+        body {
+            display: none;
+        }
     </style>
 
     <script type="module" src="./js/main.js"></script>
 </head>
+
 <body>
-<div class="container mt-5 mb-20vh d-flex flex-column gap-3">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-3">Melbourne Pedestrian Behaviour (WIP)</h1>
+    <div class="container mt-5 mb-20vh d-flex flex-column gap-3">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-3">Melbourne Pedestrian Behaviour (WIP)</h1>
+            </div>
+            <div class="col-3 d-flex flex-wrap align-items-center justify-content-end gap-1">
+                <a class="github-button" href="https://github.com/ottoesp"
+                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
+                    aria-label="Follow @ottoesp on GitHub">Follow @ottoesp</a>
+                <a class="github-button" href="https://github.com/ottoesp/melbournepedestrianinvestigation"
+                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star"
+                    data-size="large" aria-label="Star ottoesp/logicgatediagramgenerator on GitHub">Star</a>
+            </div>
         </div>
-        <div class="col-3 d-flex flex-wrap align-items-center justify-content-end gap-1">
-            <a class="github-button" href="https://github.com/ottoesp" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @ottoesp on GitHub">Follow @ottoesp</a>
-            <a class="github-button" href="https://github.com/ottoesp/melbournepedestrianinvestigation" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star ottoesp/logicgatediagramgenerator on GitHub">Star</a>
-        </div>
-    </div>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <p class="h3">What is this website about?</p>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem soluta ipsam quae rerum vel possimus, amet laudantium hic itaque natus. Maiores rem eos quaerat consequatur itaque tempora ea repudiandae doloremque consectetur exercitationem dolore iste nesciunt laudantium, optio modi, quisquam neque! Repellendus dicta tempore, nisi a adipisci, quod distinctio dolorem ea quo eveniet consequuntur. Optio voluptate dolor alias tempora, vitae beatae sit explicabo dolorem, eius earum expedita rem non error delectus ducimus reiciendis quos repellat voluptatum modi veritatis perspiciatis. Est consequatur aperiam eveniet repellendus qui aliquam quas iste. Laboriosam, optio nam? Aliquid optio nemo tempora sed quibusdam velit assumenda magnam corporis!
-            </p>
-            <p class="text-secondary">
-                Data on pedestrian counts is obtained from <a href="https://melbournetestbed.opendatasoft.com/pages/home/">The City of Melbourne</a> OpenData Pedestrian Counting System.
-            </p>
+        <div class="row mt-3">
+            <div class="col-12">
+                <p class="h3">What is this website about?</p>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem soluta ipsam quae rerum vel possimus,
+                    amet laudantium hic itaque natus. Maiores rem eos quaerat consequatur itaque tempora ea repudiandae
+                    doloremque consectetur exercitationem dolore iste nesciunt laudantium, optio modi, quisquam neque!
+                    Repellendus dicta tempore, nisi a adipisci, quod distinctio dolorem ea quo eveniet consequuntur.
+                    Optio voluptate dolor alias tempora, vitae beatae sit explicabo dolorem, eius earum expedita rem non
+                    error delectus ducimus reiciendis quos repellat voluptatum modi veritatis perspiciatis. Est
+                    consequatur aperiam eveniet repellendus qui aliquam quas iste. Laboriosam, optio nam? Aliquid optio
+                    nemo tempora sed quibusdam velit assumenda magnam corporis!
+                </p>
+                <p class="text-secondary">
+                    Data on pedestrian counts is obtained from <a
+                        href="https://melbournetestbed.opendatasoft.com/pages/home/">The City of Melbourne</a> OpenData
+                    Pedestrian Counting System.
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="row mb-5 g-3">
-        <h1 class="col-12 display-5">General Analysis of Pedestrian Traffic</h1>
-        
-        <h3 class="col-12">Overall Change</h3>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="card h-100 pt-3">
-                <img src="/percent_change_plot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img>
-                <div class="card-body"> </div>
-                <div class="card-footer text-center">
-                    <p class="card-text text-secondary">Figure X</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col12 col-md-6 col-lg-4">
-            <div class="card h-100 pt-3">
-                <img src="/counts_map_plot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img>
-                <div class="card-footer text-center">
-                    <p class="card-text text-secondary">Figure X</p>
-                </div>
-            </div>
-        </div>
-        
-        <h3 class="col-12">Change by Day of the Week</h3>
-        <div class="col-12 col-lg-8">
-            <div class="card h-100">
-                <div class="card-body">
-                    <img src="/day_effects.svg" class="img-fluid mx-auto d-block" alt="Plot of pedestrian traffic in melbourne">
-                </div>
-                <div class="card-footer text-center">
-                    <p class="card-text text-secondary">Figure X</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="row mb-5 g-3">
+            <h1 class="col-12 display-5">General Analysis of Pedestrian Traffic</h1>
 
-    <div class="row mb-5 g-3">
-        <h1 class="col-12 display-5">Location Specific Pedestrian Traffic</h1>
-
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Change in Pedestrian Traffic from 2019 to 2025</h3>
-                    <p class="card-text">This interactive map illustrates the locations of pedestrian sensors across Melbourne. At each location, the height of each column corresponds to the change in daily pedestrians counted from 2019 to 2025.</p>
-                    <blockquote class="blockquote">
-                        <p>Drag the map to rotate <br>Select a location to see further statistics</p>
-                    </blockquote>
+            <h3 class="col-12">Overall Change</h3>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 pt-3">
+                    <img src="/percent_change_plot.svg" class="card-img-bot"
+                        alt="Plot of pedestrian traffic in melbourne"></img>
+                    <div class="card-body"> </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
                 </div>
-                <div id="deck-container" class="overflow-hidden card-img-bot" oncontextmenu="return false;">
-                    <div id="map-interaction-hint" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none bg-dark bg-opacity-75 overflow-hidden z-1">
-                        <p class="text-light">Double tap to enable/disable map rotation</p>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card’s content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 pt-3">
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark card-img-top"
+                        data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="counts_map_plot_2019.svg" class="d-block w-100"
+                                    alt="Map of sensor average counts in 2019">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="counts_map_plot_2025.svg" class="d-block w-100"
+                                    alt="Map of sensor average counts in 2025">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="col-12">Change by Day of the Week</h3>
+            <div class="col-12 col-lg-8">
+                <div class="card h-100 pt-3">
+                    <img src="/day_effects.svg" class="card-img-top"
+                        alt="Plot of pedestrian traffic in melbourne by day of the week">
+                    <div class="card-body"></div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 pt-3">
+                    <img src="/change_by_day_type.svg" class="card-img-top"
+                        alt="Plot of change in pedestrian traffic on weekdays, weekends and average">
+                    <div class="card-body"></div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X <sup class="text-primary"><a
+                                    href="#non-linear-ci">1</a></sup></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Pedestrian Counts Over the Week</h5>
-                    <p class="card-text">A comparison of pedestrian counts on the weekend vs weekdays</p>
-                </div>
-                <!-- <img src="/2dplot.svg" class="card-img-bot" alt="Plot of pedestrian traffic in melbourne"></img> -->
-            </div>
-        </div>
-    
-        <div class="col-12">
-            <div id="sensor_plot_card" class="card h-100">
-                <img src="/sensorplots/1_sensor_plot.svg" id="sensor-plot-image" class="card-img-top img-fluid" alt="Sensor plot" loading="lazy" decoding="async">
-            </div>
-        </div>
-    </div>
-    
-    <div class="row mb-5 g-3">
-        <h1 class="col-12 display-5">Methodology</h1>
-        <h3 class="col-12">Introduction</h3>
-        <div class="col-12 col-lg-6">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Linear Mixed Models</h5>
-                    <p class="card-text">
-                        \[\boldsymbol y = X\bbeta\ + Z\b \]
-                    </p>
-                    <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus, quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque magni et.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Lognormally Distributed Data</h5>
-                    <p class="card-text">
-                        \[\log\boldsymbol y = X\bbeta\ + Z\b \]
-                    </p>
-                    <p class="card-text">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus, quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque magni et.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="card h-100">
-                <img src="/log_transform_hist.svg" class="card-img mt-2">
-                <div class="card-footer text-center">
-                    <p class="card-text text-secondary">Figure X</p>
-                </div>
-            </div>
-        </div>
-        <h3 class="col-12">Model Selection</h3>
-        <div class="col-12 col-lg-8">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
-                    <p class="card-text">
-                        In this first model we assume every sensor shares a common day-of-week pattern while allowing a unique response to year. The key assumptions here are that:
-                        <ul>
-                            <li>The relative differences between days of the week stay constant across 2019 and 2025.</li>
-                            <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more or less effected).</li>
-                        </ul>
-                    </p>
-                    <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days} \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t + \varepsilon_{i,t}\]</p>
-                    <p class="card-text">and so on...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</div>
+        <div class="row mb-5 g-3">
+            <h1 class="col-12 display-5">Location Specific Pedestrian Traffic</h1>
 
-<script async defer src="https://buttons.github.io/buttons.js"></script>    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Change in Pedestrian Traffic from 2019 to 2025</h3>
+                        <p class="card-text">This interactive map illustrates the locations of pedestrian sensors across
+                            Melbourne. At each location, the height of each column corresponds to the change in daily
+                            pedestrians counted from 2019 to 2025.</p>
+                        <blockquote class="blockquote">
+                            <p>Drag the map to rotate</p>
+                        </blockquote>
+                    </div>
+                    <div id="deck-container" class="overflow-hidden card-img-bot" oncontextmenu="return false;">
+                        <div id="map-interaction-hint"
+                            class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none bg-dark bg-opacity-75 overflow-hidden z-1">
+                            <p class="text-light">Double tap to enable/disable map rotation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div id="sensor_plot_container" class="row">
+                    <div class="col-12">
+                        <div class="card h-100 text-center text-secondary">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center"
+                                style="min-height: 300px;">
+                                <p class="h5">Select a sensor on the map to view details</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5 g-3">
+            <h1 class="col-12 display-5">Methodology</h1>
+            <h3 class="col-12">Introduction</h3>
+            <div class="col-12 col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Linear Mixed Models</h5>
+                        <p class="card-text">
+                            \[\boldsymbol y = X\bbeta\ + Z\b \]
+                        </p>
+                        <p class="card-text">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod
+                            facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus,
+                            quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere
+                            necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque
+                            magni et.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Lognormally Distributed Data</h5>
+                        <p class="card-text">
+                            \[\log\boldsymbol y = X\bbeta\ + Z\b \]
+                        </p>
+                        <p class="card-text">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod
+                            facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus,
+                            quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere
+                            necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque
+                            magni et.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card h-100">
+                    <img src="/log_transform_hist.svg" class="card-img mt-2">
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
+                </div>
+            </div>
+            <h3 class="col-12">Model Selection</h3>
+            <div class="col-12 col-lg-8">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                        <p class="card-text">
+                            In this first model we assume every sensor shares a common day-of-week pattern while
+                            allowing a unique response to year. The key assumptions here are that:
+                        <ul>
+                            <li>The relative differences between days of the week stay constant across 2019 and 2025.
+                            </li>
+                            <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
+                                or less effected).</li>
+                        </ul>
+                        </p>
+                        <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                            \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
+                            \varepsilon_{i,t}\]</p>
+                        <p class="card-text">and so on...</p>
+                    </div>
+                </div>
+            </div>
+            <h3 class="col-12">Inference</h3>
+            <div class="col-12 col-lg-8">
+                <div class="card h-100">
+                    <div id="non-linear-ci" class="card-body">
+                        <h5 class="card-title">Confidence Intervals for Non-Linear Combinations of Parameters</h5>
+                        <p class="card-text">
+                            In this first model we assume every sensor shares a common day-of-week pattern while
+                            allowing a unique response to year. The key assumptions here are that:
+                        <ul>
+                            <li>The relative differences between days of the week stay constant across 2019 and 2025.
+                            </li>
+                            <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
+                                or less effected).</li>
+                        </ul>
+                        </p>
+                        <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                            \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
+                            \varepsilon_{i,t}\]</p>
+                        <p class="card-text">and so on...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
