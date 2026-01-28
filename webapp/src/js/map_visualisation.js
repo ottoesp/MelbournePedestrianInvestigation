@@ -90,9 +90,7 @@ export async function initMap() {
         controller: isMobile ? inactive_controller : active_controller,
         onClick: (info) => {
             if (info.object) {
-                loadSensorPlot(info.object);
-                document.getElementById('sensor_plot_container')
-                    ?.scrollIntoView({block: 'end', behavior: "smooth" });
+                loadSensorPlot(info.object)
             }
         },
         mapStyle: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',

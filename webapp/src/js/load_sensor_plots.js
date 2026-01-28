@@ -5,6 +5,8 @@ export async function loadSensorPlot(sensor) {
     const days_plot = await createDaysPlot(sensor)
     const fit_plot = await createFitPlot(sensor)
     container.replaceChildren(sensor_plot, days_plot, fit_plot);
+
+    sensor_plot.scrollIntoView({block: 'center', behavior: "smooth" })
 }
 
 function createCountsPlot(sensor) {
