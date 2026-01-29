@@ -109,7 +109,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 pt-3">
-                    <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark card-img-top"
+                    <div id="counts-map-carousel" class="carousel slide carousel-fade carousel-dark card-img-top"
                         data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -121,12 +121,12 @@
                                     alt="Map of sensor average counts in 2025">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                        <button class="carousel-control-prev" type="button" data-bs-target="#counts-map-carousel"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                        <button class="carousel-control-next" type="button" data-bs-target="#counts-map-carousel"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -247,27 +247,113 @@
                 </div>
             </div>
             <h3 class="col-12 mt-5">Model Selection</h3>
-            <div class="col-12 col-lg-8">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
-                        <p class="card-text">
-                            In this first model we assume every sensor shares a common day-of-week pattern while
-                            allowing a unique response to year. The key assumptions here are that:
-                        <ul>
-                            <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                            </li>
-                            <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                or less effected).</li>
-                        </ul>
-                        </p>
-                        <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                            \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                            \varepsilon_{i,t}\]</p>
-                        <p class="card-text">and so on...</p>
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                                <p class="card-text">
+                                    In this first model we assume every sensor shares a common day-of-week pattern while
+                                    allowing a unique response to year. The key assumptions here are that:
+                                <ul>
+                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
+                                    </li>
+                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
+                                        or less effected).</li>
+                                </ul>
+                                </p>
+                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
+                                    \varepsilon_{i,t}\]</p>
+                                <p class="card-text">and so on...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card h-100 pt-3">
+                            <img src="/exploration_model1.svg" class="card-img">
+                                    <div class="card-body"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card h-100 pt-3">
+                            <img src="/exploration_model2.svg" class="card-img">
+                                    <div class="card-body"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                                <p class="card-text">
+                                    In this first model we assume every sensor shares a common day-of-week pattern while
+                                    allowing a unique response to year. The key assumptions here are that:
+                                <ul>
+                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
+                                    </li>
+                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
+                                        or less effected).</li>
+                                </ul>
+                                </p>
+                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
+                                    \varepsilon_{i,t}\]</p>
+                                <p class="card-text">and so on...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                                <p class="card-text">
+                                    In this first model we assume every sensor shares a common day-of-week pattern while
+                                    allowing a unique response to year. The key assumptions here are that:
+                                <ul>
+                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
+                                    </li>
+                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
+                                        or less effected).</li>
+                                </ul>
+                                </p>
+                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
+                                    \varepsilon_{i,t}\]</p>
+                                <p class="card-text">and so on...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="card h-100 pt-3">
+                            <img src="/exploration_model3.svg" class="card-img">
+                                    <div class="card-body"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
             <div class="col-12">
                 <div class="row g-3">
                     <h3 class="col-12 mt-5">Model Diagnostics</h3>
