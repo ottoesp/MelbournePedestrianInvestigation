@@ -53,7 +53,7 @@ function disableMapInteraction(deckgl) {
 
 const viewportWidth = window.innerWidth;
 const isMobile = viewportWidth < 768;
-const zoom = viewportWidth < 768 ? 13.5 : 14.2;
+const zoom = viewportWidth < 768 ? 13.9 : 14.2;
 
 let mapInteractionEnabled = false;
 
@@ -81,8 +81,8 @@ export async function initMap() {
             repeat: true,
         }),
         initialViewState: {
-            longitude: 144.96,
-            latitude: -37.813,
+            longitude: 144.96047017357662,
+            latitude: -37.812267898029205,
             zoom: zoom,
             pitch: 60,
             bearing: -60,
