@@ -12,6 +12,7 @@
 
     <script>
         MathJax = {
+            loader: {load: ['[tex]/color']},
             tex: {
                 macros: {
                     RR: '{\\bf R}',
@@ -20,9 +21,11 @@
                     x: '{\\boldsymbol x}',
                     z: '{\\boldsymbol z}',
                     bbeta: '{\\boldsymbol {\\beta}}',
+                    primary: '{\\color{#0d6efd}#1}'
                 },
                 inlineMath: { '[+]': [['$', '$']] },
                 displayMath: [['\\[', '\\]']],
+                packages: {'[+]': ['color']}
             },
             chtml: {
                 displayOverflow: 'linebreak',  // break long lines
@@ -145,7 +148,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4">
-                <div class="card h-100 pt-3">
+                <div id="daytype_difference_map" class="card h-100 pt-3">
                     <img src="/daytype_difference_map.svg" class="card-img-top"
                         alt="Map showing diffence in pedestrian traffic on weekdays vs weekends">
                     <div class="card-body"></div>
@@ -276,28 +279,41 @@
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                                <h5 class="card-title">First Model - Common day structure, sensor‑specific year response</h5>
                                 <p class="card-text">
-                                    In this first model we assume every sensor shares a common day-of-week pattern while
-                                    allowing a unique response to year. The key assumptions here are that:
-                                <ul>
-                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                                    </li>
-                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                        or less effected).</li>
-                                </ul>
+                                    This model assumes all sensors share a common weekly pattern, while each sensor has its own response to year. Key points:
                                 </p>
-                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                                    \varepsilon_{i,t}\]</p>
-                                <p class="card-text">and so on...</p>
+                                <ul>
+                                    <li>Day‑of‑week differences remain consistent between 2019 and 2025 (parralel lines within groups).</li>
+                                    <li>Sensors can be differently affected by the change from 2019 to 2025 (each group has a unique slope).</li>
+                                </ul>
+                                <p>We can model this as:</p>
+                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus \text{Friday}} {(\beta_d\, \mathbb{1}_{t \in D})} + b_{0,i} + b_{1,i}\,\text{Year}_t + \varepsilon_{i,t}\]</p>
+                                <p class="card-text">
+                                    Here \(y_{i,t}\) is the daily count at sensor \(i\) on day \(t\), and \(\text{Year}_t\) is an indicator for the year 2025 (\(0\) for 2019, \(1\) for 2025).
+                                </p>
+
+                                <p class="card-text">Fixed effects</p>
+                                <ul>
+                                    <li>\(\beta_0\): Mean log daily count on Friday in 2019.</li>
+                                    <li>\(\beta_1\): Population‑average log difference between 2019 and 2025.</li>
+                                    <li>\(\beta_d\): Effect of day \(d\) relative to Friday.</li>
+                                </ul>
+
+                                <p class="card-text">Random effects</p>
+                                <ul>
+                                    <li>\(b_{0,i}\): Sensor‑specific deviation from \(\beta_0\).</li>
+                                    <li>\(b_{1,i}\): Sensor‑specific deviation in the year effect \(\beta_1\).</li>
+                                    <li>\(\varepsilon_{i,t}\): Random error, \(\varepsilon_{i,t} \sim N(0, \sigma^2)\).</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 col-lg-3">
-                        <div class="card h-100 pt-3">
+                        <div id="model1plot" class="card h-100 pt-3">
                             <img src="/exploration_model1.svg" class="card-img">
-                                    <div class="card-body"></div>
+                            <div class="card-body">
+                            </div>
                             <div class="card-footer text-center">
                                 <p class="card-text text-secondary">Figure X</p>
                             </div>
@@ -320,21 +336,23 @@
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Second Model - Common day structure, Sensor Specific Year Response</h5>
+                                <h5 class="card-title">Second Model - Day Specific Year Effects</h5>
                                 <p class="card-text">
-                                    In this first model we assume every sensor shares a common day-of-week pattern while
-                                    allowing a unique response to year. The key assumptions here are that:
-                                <ul>
-                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                                    </li>
-                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                        or less effected).</li>
-                                </ul>
+                                    In this model we relax the assumption that the weekly structure is constant across 2019 and 2025. 
+                                    We introduce a fixed interaction effect (highlighted below in blue) which models how different days 
+                                    have been affected over time.
                                 </p>
-                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                                    \varepsilon_{i,t}\]</p>
-                                <p class="card-text">and so on...</p>
+                                <p class="card-text">
+                                    This is motivated by real-world understanding: the COVID-19 pandemic introduced working-from-home 
+                                    measures that have remained in place, suggesting weekdays might be more affected from 2019 to 2025.
+                                </p>
+                                <p class="card-text">
+                                    Importantly, in this model, the interaction effect is still constant across sensors (size of deviation in slope for each day is shared across groups), meaning all areas of Melbourne are 
+                                    modeled as equally affected. This assumption is relaxed in model 3 to allow for location-specific variability.
+                                </p>
+                                <p class="card-text">
+                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days} \setminus \text{Friday}} {(\beta_d \mathbb 1_{t \in D})} + {\color{#0d6efd}\sum_{D \in \text{days} \setminus \text{Friday}} {(\beta_{d \times Year} (\text{Year} \cdot \mathbb 1_{t \in D}))}} + b_{0,i} + b_{1,i} \text{Year}_t + \varepsilon_{i,t}\]
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -346,21 +364,24 @@
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Final Model - Common day structure, Sensor Specific Year Response</h5>
+                                <h5 class="card-title">Final Model - Sensor‑specific Weekend Effects</h5>
                                 <p class="card-text">
-                                    In this first model we assume every sensor shares a common day-of-week pattern while
-                                    allowing a unique response to year. The key assumptions here are that:
-                                <ul>
-                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                                    </li>
-                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                        or less effected).</li>
-                                </ul>
+                                    This final model further relaxes the structure of the random effects, allowing pedestrian count patterns to vary by location
+                                    while retaining a common day-of-week structure across the population.
                                 </p>
-                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                                    \varepsilon_{i,t}\]</p>
-                                <p class="card-text">and so on...</p>
+                                <p>
+                                    To improve model stability and avoid overfitting, we introduce a binary random effect distinguishing weekends from weekdays via the indicator $\text{Weekend}_t$.
+                                    Rather than allowing fully day-specific random effects, this specification captures location-specific deviations in weekend behaviour while maintaining reliable convergence.
+                                </p>
+                                <p>
+                                    In particular, this model allows us to investigate how changes in behaviour from 2019 and 2025
+                                    (such as increased working from home) uniquely affect weekend and weekday pedestrian activity across locations.
+                                </p>
+                                <p class="card-text">
+                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus \text{Friday}} (\beta_d\, \mathbb{1}_{t \in D})
+                                    + \sum_{D \in \text{days}\setminus \text{Friday}} (\beta_{d \times \text{Year}} (\text{Year}_t \cdot \mathbb{1}_{t \in D})) \\
+                                    + b_{0,i} + b_{1,i}\,\text{Year}_t + {\color{#0d6efd}b_{2,i}\,\text{Weekend}_t} + {\color{#0d6efd}b_{3,i}(\text{Year}_t \cdot \text{Weekend}_t)} + \varepsilon_{i,t}\]
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -370,6 +391,108 @@
                                     <div class="card-body"></div>
                             <div class="card-footer text-center">
                                 <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Evaluating Models</h3>
+                                <p class="card-text">
+                                    After fitting each of these models with maximum likelihood, I evaluated their fit by comparing their 
+                                    <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike information criterion</a> (AIC). 
+                                </p>
+                                <p class="card-text text-secondary">
+                                    AIC of models (lower is better)
+                                </p>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">AIC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Model 1: Common day structure, sensor-specific year</td>
+                                            <td>55187.80</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model 2: Day-specific year effects</td>
+                                            <td>55024.57</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model 3: Sensor-specific weekend effects</td>
+                                            <td>47201.61</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alternative: Day-specific random effects</td>
+                                            <td>47638.51</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    As can be seen by the significant improvement from model 2 to 3, heterogeneity in how locations responded to Covid on Weekdays vs Weekends is pertinent to our data.
+                                </p>
+                                <p>
+                                    After performing this validation, the model was refit using <a href="Restricted_maximum_likelihood">restricted maximum likelihood</a> (REML) for a less biased fit.<br>The results of this are shown in figure X.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body overflow-auto" style="max-height: 600px;">
+                                <pre>
+Mixed Linear Model Regression Results
+====================================================================================================
+Model:                           MixedLM               Dependent Variable:               daily_count
+No. Observations:                34178                 Method:                           ML         
+No. Groups:                      49                    Scale:                            0.2264     
+Min. group size:                 442                   Log-Likelihood:                   -23575.8062
+Max. group size:                 730                   Converged:                        Yes        
+Mean group size:                 697.5                                                              
+----------------------------------------------------------------------------------------------------
+                                                         Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+----------------------------------------------------------------------------------------------------
+Intercept                                                 9.289    0.123  75.369 0.000  9.047  9.530
+day[T.Monday]                                            -0.175    0.014 -12.652 0.000 -0.202 -0.148
+day[T.Saturday]                                          -0.309    0.082  -3.758 0.000 -0.470 -0.148
+day[T.Sunday]                                            -0.482    0.082  -5.861 0.000 -0.643 -0.321
+day[T.Thursday]                                          -0.042    0.014  -3.063 0.002 -0.070 -0.015
+day[T.Tuesday]                                           -0.091    0.014  -6.626 0.000 -0.118 -0.064
+day[T.Wednesday]                                         -0.055    0.014  -3.973 0.000 -0.082 -0.028
+year[T.2025]                                             -0.360    0.066  -5.413 0.000 -0.490 -0.230
+day[T.Monday]:year[T.2025]                               -0.045    0.019  -2.330 0.020 -0.083 -0.007
+day[T.Saturday]:year[T.2025]                              0.173    0.029   6.039 0.000  0.117  0.229
+day[T.Sunday]:year[T.2025]                                0.132    0.029   4.598 0.000  0.076  0.188
+day[T.Thursday]:year[T.2025]                              0.036    0.019   1.865 0.062 -0.002  0.074
+day[T.Tuesday]:year[T.2025]                              -0.004    0.019  -0.229 0.819 -0.042  0.033
+day[T.Wednesday]:year[T.2025]                             0.048    0.019   2.502 0.012  0.010  0.086
+Group Var                                                 0.739    0.314                            
+Group x is_weekend[T.True] Cov                           -0.016    0.147                            
+is_weekend[T.True] Var                                    0.322    0.138                            
+Group x year[T.2025] Cov                                 -0.172    0.129                            
+is_weekend[T.True] x year[T.2025] Cov                     0.065    0.081                            
+year[T.2025] Var                                          0.207    0.089                            
+Group x is_weekend[T.True]:year[T.2025] Cov               0.025    0.044                            
+is_weekend[T.True] x is_weekend[T.True]:year[T.2025] Cov -0.039    0.031                            
+year[T.2025] x is_weekend[T.True]:year[T.2025] Cov       -0.018    0.024                            
+is_weekend[T.True]:year[T.2025] Var                       0.022    0.012                            
+====================================================================================================
+                                </pre>
+                            </div>
+                            <div class="m-auto"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">
+                                    Figure X<br>
+                                    Note that values here are on a log scale
+                                </p>
                             </div>
                         </div>
                     </div>
