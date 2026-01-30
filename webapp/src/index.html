@@ -69,14 +69,13 @@
             <div class="col-12">
                 <p class="h3">What is this website about?</p>
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem soluta ipsam quae rerum vel possimus,
-                    amet laudantium hic itaque natus. Maiores rem eos quaerat consequatur itaque tempora ea repudiandae
-                    doloremque consectetur exercitationem dolore iste nesciunt laudantium, optio modi, quisquam neque!
-                    Repellendus dicta tempore, nisi a adipisci, quod distinctio dolorem ea quo eveniet consequuntur.
-                    Optio voluptate dolor alias tempora, vitae beatae sit explicabo dolorem, eius earum expedita rem non
-                    error delectus ducimus reiciendis quos repellat voluptatum modi veritatis perspiciatis. Est
-                    consequatur aperiam eveniet repellendus qui aliquam quas iste. Laboriosam, optio nam? Aliquid optio
-                    nemo tempora sed quibusdam velit assumenda magnam corporis!
+                    This website explores how pedestrian activity across Melbourne has changed since before the COVID-19 pandemic, using data from The City of Melbourne Pedestrian Counting System. This system forms a network of sensors across the inner city, recording hourly pedestrian volumes at each location. By comparing pre-pandemic data from 2019 with more recent observations in 2025 this project aims to quantify how pedestrian movement has changed over these years. 
+                </p>
+                <p>
+                    To analyse these changes, we used statistical models which account for both the widespread effects across the city, and location specific deviations from these trends. This approach recognises that different locations will have been impacted in different ways. In particular, we expect the increase in working from home to have disproportionately reduced the pedestrian traffic in areas with a concentration of offices.
+                </p>
+                <p>
+                    This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present an honest and balanced interpretation of my findings. If you notice any issues, please feel free to submit an issue on GitHub.
                 </p>
                 <p class="text-secondary">
                     Data on pedestrian counts is obtained from <a
@@ -89,16 +88,35 @@
         <div class="row mb-5 g-3">
             <h1 class="col-12 display-5">General Analysis of Pedestrian Traffic</h1>
 
-            <h3 class="col-12">Overall Change</h3>
-            <div class="col">
+            <div class="col-12 col-sm-8">
                 <div class="card h-100 pt-3">
                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo consequatur eos at quia rerum esse! Iure facere ratione, saepe blanditiis inventore rerum laudantium quasi minima veniam vel repudiandae aperiam fuga? Commodi, modi. Corrupti officiis rerum numquam ducimus necessitatibus culpa excepturi?</p>
+                        <h3 class="card-title">Melbourne is less busy than in 2019</h3>
+                        <p class="card-text">
+                            Across the network, pedestrian counts have decreased significantly with Fridays in 2025 experiencing a 30.2%* reduction from their 2019 levels indicating a general reduction in activity across the city.
+                        </p>
+                        <p class="card-text text-secondary">
+                            *95% CI given by (20.5%, 38.7%)
+                        </p>
+                        <blockquote class="blockquote">
+                            These Changes Were Not Felt Evenly Across the City
+                        </blockquote>
+                        <p class="card-text">
+                            Figure X maps the change in pedestrian activity from 2019 to 2025. While most locations experienced declines, the magnitude of these changes varied significantly. We can see some of the largest decreases were felt south of Londsdale St with activity at Burke St Mall decreasing by 66.9%. However, the northern CBD around Melbourne Central and RMIT were relatively less impacted with some locations seeing increases in activity. 
+                        </p>
+
+                        <p class="card-text">
+                            This may be partially attributed to working at home which caused locations with many offices to experience less pedestrian traffic. We further investigate this effect as we discuss how different days of the week have been affected.
+                        </p>
+                        <p class="card-text">
+                            It is important to note that sensors do not provide even coverage of the entire CBD (notably between Queen and King Street) and so we cannot draw conclusions for areas without sensor coverage.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 pt-3">
+
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card pt-3">
                     <div id="counts-map-carousel" class="carousel slide carousel-fade carousel-dark card-img-top"
                         data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -129,7 +147,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card h-100 pt-3">
+                    <img src="/percent_change_plot.svg" class="card-img-bot"
+                        alt="Plot of pedestrian traffic in melbourne"></img>
+                    <div class="card-body"> </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
                 <div class="card h-100 pt-3">
                     <img src="/sensorpercentagebar.svg" class="card-img-bot"
                         alt="Plot of pedestrian traffic in melbourne"></img>
@@ -139,15 +167,14 @@
                     </div>
                 </div>
             </div>
-            <h3 class="col-12 mt-5">Change by Day of the Week</h3>
-            <div class="col">
+            <div class="col-12 col-lg-8">
                 <div class="card h-100 pt-3">
                     <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo consequatur eos at quia rerum esse! Iure facere ratione, saepe blanditiis inventore rerum laudantium quasi minima veniam vel repudiandae aperiam fuga? Commodi, modi. Corrupti officiis rerum numquam ducimus necessitatibus culpa excepturi?</p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
+            <div class="col-6 col-lg-4">
                 <div id="daytype_difference_map" class="card h-100 pt-3">
                     <img src="/daytype_difference_map.svg" class="card-img-top"
                         alt="Map showing diffence in pedestrian traffic on weekdays vs weekends">
@@ -157,7 +184,17 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-6 col-lg-4">
+                <div class="card h-100 pt-3">
+                    <img src="/change_by_day_type.svg" class="card-img-top"
+                        alt="Plot of change in pedestrian traffic on weekdays, weekends and average">
+                    <div class="card-body"></div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X <sup class="text-primary"><a
+                                    href="#non-linear-ci">1</a></sup></p>
+                    </div>
+                </div>
+            </div>
             <div class="col-12 col-lg-8">
                 <div class="card h-100 pt-3">
                     <img src="/day_effects.svg" class="card-img-top"
@@ -169,17 +206,7 @@
                 </div>
             </div>
 
-            <div class="col">
-                <div class="card h-100 pt-3">
-                    <img src="/change_by_day_type.svg" class="card-img-top"
-                        alt="Plot of change in pedestrian traffic on weekdays, weekends and average">
-                    <div class="card-body"></div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-secondary">Figure X <sup class="text-primary"><a
-                                    href="#non-linear-ci">1</a></sup></p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
         <div class="row mb-5 g-3">
