@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Melbourne Pedestrian Behaviour</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
     <script src="https://unpkg.com/deck.gl@^9.0.0/dist.min.js"></script>
     <script src="https://unpkg.com/maplibre-gl@^4.0.0/dist/maplibre-gl.js"></script>
@@ -57,13 +58,16 @@
             <div class="col-12 col-lg-9">
                 <h1 class="display-3">Melbourne Pedestrian Behaviour</h1>
             </div>
-            <div class="col-12 col-lg-3 d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end gap-2">
-                <a class="github-button" href="https://github.com/ottoesp"
-                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-                    aria-label="Follow @ottoesp on GitHub">Follow @ottoesp</a>
-                <a class="github-button" href="https://github.com/ottoesp/melbournepedestrianinvestigation"
-                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star"
-                    data-size="large" aria-label="Star ottoesp/melbournepedestrianinvestigation on GitHub">Star</a>
+            <div class="col-12 col-lg-3 d-flex flex-nowrap align-items-center justify-content-center justify-content-lg-end gap-2">
+                <a href="https://ottoesperson.com" class="btn btn-outline-primary" title="Home">
+                    <i class="bi bi-house-fill"></i>
+                </a>
+                <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap" title="Follow on GitHub">
+                    <i class="bi bi-github"></i> <span class="d-none d-sm-inline">@ottoesp</span>
+                </a>
+                <a href="https://github.com/ottoesp/melbournepedestrianinvestigation" class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
+                    <i class="bi bi-star-fill"></i>
+                </a>
             </div>
         </div>
 
@@ -669,16 +673,16 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                         Pedestrian counting data provided by <a href="https://melbournetestbed.opendatasoft.com/pages/home/" class="text-primary">The City of Melbourne</a>
                     </p>
                 </div>
-                <div class="col-md-3">
-                    <h6 class="mb-3">GitHub</h6>
-                    <div class="d-flex flex-row gap-2">
-                        <a class="github-button" href="https://github.com/ottoesp"
-                            data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-                            aria-label="Follow @ottoesp on GitHub">Follow @ottoesp</a>
-                        <a class="github-button" href="https://github.com/ottoesp/melbournepedestrianinvestigation"
-                            data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star"
-                            data-size="large" aria-label="Star ottoesp/melbournepedestrianinvestigation on GitHub">Star</a>
-                    </div>
+                <div class="col-3 d-flex flex-nowrap align-items-center justify-content-center justify-content-lg-end gap-2">
+                    <a href="https://ottoesperson.com" class="btn btn-outline-primary" title="Home">
+                        <i class="bi bi-house-fill"></i>
+                    </a>
+                    <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap" title="Follow on GitHub">
+                        <i class="bi bi-github"></i> <span class="d-none d-sm-inline">@ottoesp</span>
+                    </a>
+                    <a href="https://github.com/ottoesp/melbournepedestrianinvestigation" class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
+                        <i class="bi bi-star-fill"></i>
+                    </a>
                 </div>
             </div>
             <hr class="my-4">
