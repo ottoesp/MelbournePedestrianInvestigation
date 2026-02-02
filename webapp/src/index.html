@@ -18,8 +18,10 @@
                     RR: '{\\bf R}',
                     bold: ['{\\boldsymbol #1}', 1],
                     b: '{\\boldsymbol b}',
+                    u: '{\\boldsymbol u}',
                     x: '{\\boldsymbol x}',
                     z: '{\\boldsymbol z}',
+                    norm: ['{\\mathcal{N}(#1, #2)}', 2],
                     bbeta: '{\\boldsymbol {\\beta}}',
                     primary: '{\\color{#0d6efd}#1}'
                 },
@@ -78,7 +80,7 @@
                     Because this analysis is based on observational data, many confounding factors are present and we cannot establish causality. However, it still offers valuable insight into how our city has changed across this pivotal time in recent history.
                 </p>
                 <p>
-                    This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present an honest and balanced interpretation of my findings. If you notice any issues, please feel free to submit an issue on GitHub.
+                    This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present an honest and balanced interpretation of my findings. If you notice any issues, please feel free to submit an issue on GitHub :)
                 </p>
                 <p class="text-secondary">
                     Data on pedestrian counts is obtained from <a
@@ -270,58 +272,93 @@
         <div class="row mb-5 g-3">
             <h1 class="col-12 display-5">Methodology</h1>
             <h3 class="col-12">Introduction</h3>
-            <div class="col-12 col-lg-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Linear Mixed Models</h5>
-                        <p class="card-text">
-                            \[\boldsymbol y = X\bbeta\ + Z\b \]
-                        </p>
-                        <p class="card-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod
-                            facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus,
-                            quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere
-                            necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque
-                            magni et.
-                        </p>
+            <div class="col-12">
+                <div class="row g-3 justify-content-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Linear Mixed Models</h5>
+                                <p class="card-text">
+                                    Linear mixed models (LMMs) extend simple linear models by allowing for both fixed and random effects. This is important when observations are dependent. In our case, multiple readings from the same sensor are inherently correlated which violates the independence assumption of ordinary linear models.
+                                </p>
+                                <p class="card-text">
+                                    By including random effects, LMMs allow for sensor-to-sensor deviation while still being able to analyse the population level trends. 
+                                </p>
+                                <p class="card-text">
+                                    Formally, we model this as
+                                </p>
+                                <p>
+                                    \[\boldsymbol y = X \bbeta + Z\b + \boldsymbol \varepsilon\]
+                                </p>
+                                <p class="card-text">
+                                    where
+                                    <ul>
+                                        <li>
+                                            $\bbeta$ is a vector of fixed effects,
+                                        </li>
+                                        <li>
+                                            $X$ and $Z$ are the design matrices of the fixed and random effects respectively,
+                                        </li>
+                                        <li>
+                                            $\b$ is a vector of random effects with multivariate normal distribution with covariance matrix $G$, $\b \sim \norm{\boldsymbol 0}{G}$,
+                                        </li>
+                                        <li>
+                                            $\boldsymbol \varepsilon$ is a vector of residual errors assumed to be multivariate normally distributed $\norm{\boldsymbol 0} {\sigma^2 I}$ capturing variation that is not explained by the model.
+                                        </li>
+                                    </ul>
+                                </p>
+                                <p class="card-text">
+                                    This formulation properly accounts for the heterogeneity of pedestrian activity across many locations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Lognormally Distributed Data</h5>
+                                <p class="card-text">
+                                    The lognormal distribution is often a natural model for non-negative data that arises from multiplicative processes. 
+                                </p>
+                                <p class="card-text">
+                                    In our dataset, a histogram of mean daily counts at each sensor (figure X, plot 1) reveals a heavily positive skewed and non-normal distribution. This violates the assumption of our mixed linear model that  $\b \sim \norm{\boldsymbol 0}{G}$, encouraging a transformation.
+                                </p>
+                                <p class="card-text">
+                                    Applying a log transformation to these daily counts (figure X, plot 2) substantially improves, symmetry producing a plot that is closer to normal. This is formally described as
+                                </p>
+                                <p class="card-text">
+                                    \[\log\boldsymbol y = X\bbeta\ + Z\b + \boldsymbol \varepsilon. \]
+                                </p>
+                                <p class="card-text">
+                                    Despite this improvement, there is a significant heavy left tail, highlighted in the Q-Q plot (figure Y), indicating that the log-transformed data is not perfectly normal. This suggests that although the log transformation has improved our model, some caution must be taken when applying methods that rely on the normality assumption.
+                                </p>
+                                <p class="card-text">
+                                    One possible improvement to this study would be to apply a general mixed linear model with a better fitting distribution such as a negative binomial. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-7 col-lg-6">
+                        <div class="card h-100">
+                            <img src="/log_transform_hist.svg" class="card-img mt-2">
+                            <div class="card-body"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-5 col-lg-4">
+                        <div class="card h-100">
+                            <img src="/QQlogtransform.png" class="card-img mt-2">
+                            <div class="card-body"></div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-secondary">Figure X</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Lognormally Distributed Data</h5>
-                        <p class="card-text">
-                            \[\log\boldsymbol y = X\bbeta\ + Z\b \]
-                        </p>
-                        <p class="card-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem vel recusandae, quod
-                            facere quidem numquam asperiores nesciunt laudantium tenetur aliquid corrupti repellendus,
-                            quo, enim unde quia deserunt fugit! Iure ipsam reiciendis iusto recusandae vitae quae facere
-                            necessitatibus voluptates dicta, omnis vel laboriosam pariatur labore sapiente illo itaque
-                            magni et.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="card h-100">
-                    <img src="/log_transform_hist.svg" class="card-img mt-2">
-                    <div class="card-body"></div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-secondary">Figure X</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="card h-100">
-                    <img src="/QQlogtransform.png" class="card-img mt-2">
-                    <div class="card-body"></div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-secondary">Figure X</p>
-                    </div>
-                </div>
-            </div>
+            
             <h3 class="col-12 mt-5">Model Selection</h3>
             <div class="col-12">
                 <div class="row g-3 justify-content-center">
@@ -558,24 +595,37 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                             <div class="card-body">
                                 <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
                                 <p class="card-text">
-                                    In this first model we assume every sensor shares a common day-of-week pattern while
-                                    allowing a unique response to year. The key assumptions here are that:
+                                    This model faces some non-trivial deviations from our assumptions, which we investigate using diagnostic plots. 
                                 </p>
-                                <ul>
-                                    <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                                    </li>
-                                    <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                        or less effected).</li>
-                                </ul>
-                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                                    \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                                    \varepsilon_{i,t}\]</p>
-                                <p class="card-text">and so on...</p>
+                                <blockquote class="blockquote">
+                                    Heavy Left-Tail
+                                </blockquote>
+                                <p class="card-text">
+                                    The Q-Q plot of residuals (Figure X) indicates a heavy left-tailed in our data. The sharp dip on the left side of the plot indicates that the model overestimates the pedestrian activity of the lowest readings. This behaviour is also visible in the plot of residuals against fitted values (Figure Z) where we see more negative than positive residuals. Together these diagnostics indicate that the model struggles to represent periods of low pedestrian activity. 
+                                </p>
+                                <blockquote class="blockquote">
+                                    Heteroskedasticity
+                                </blockquote>
+                                <p class="card-text">
+                                    Figure Z additionally reveals a fanning effect at the higher end of fitted values, indicating heteroskedasticity. This pattern likely arises from the log transformation where the variance in pedestrian counts does not increase at the same rate as the mean.
+                                </p>
+                                <blockquote class="blockquote">
+                                    Random Effects
+                                </blockquote>
+                                <p class="card-text">
+                                    In contrast the Q-Q plots of random effects (Figure Y) show substantially better agreement with the normal assumption.  Despite some deviation, the random effects appear to be roughly normal. This indicates that model error predominantly arises from observation level structure rather than specification of random effects.
+                                </p>
+                                <p class="card-text">
+                                    Overall, the diagnostic plots reveal some departure from the LMM assumptions, particularly at low pedestrian counts. These limitations reflect challenges with modelling log-transformed count data and could be further addressed by a general linear mixed model.
+                                </p>
+                                <p class="card-text">
+                                    Despite these issues, the model is sufficient for the purposes of this investigation to adequately capture the dominant patterns in the data at both a location specific and Melbourne wide level. 
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card h-100 pt-3">
+                    <div class="col-6 col-lg-4">
+                        <div class="card pt-3">
                             <img src="/QQresidual.png" class="card-img">
                             <div class="card-body"></div>
                             <div class="card-footer text-center">
@@ -583,7 +633,7 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-6">
                         <div class="card h-100 pt-3">
                             <img src="/residualvsfitted.png" class="card-img">
                             <div class="card-body"></div>
@@ -605,28 +655,7 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                     </div>
                 </div>
             </div>
-            <h3 class="col-12 mt-5">Inference</h3>
-            <div class="col-12 col-lg-8">
-                <div class="card h-100">
-                    <div id="non-linear-ci" class="card-body">
-                        <h5 class="card-title">Confidence Intervals for Non-Linear Combinations of Parameters<sup>1</sup></h5>
-                        <p class="card-text">
-                            In this first model we assume every sensor shares a common day-of-week pattern while
-                            allowing a unique response to year. The key assumptions here are that:
-                        </p>
-                        <ul>
-                            <li>The relative differences between days of the week stay constant across 2019 and 2025.
-                            </li>
-                            <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
-                                or less effected).</li>
-                        </ul>
-                        <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
-                            \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
-                            \varepsilon_{i,t}\]</p>
-                        <p class="card-text">and so on...</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>
