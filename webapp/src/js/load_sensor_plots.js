@@ -51,14 +51,9 @@ function createCountsPlot(sensor) {
         
         const body = document.createElement('div');
         body.className = 'card-body'
-
-        const footer = document.createElement('div');
-        footer.className = 'card-footer text-center';
-        footer.innerHTML = '<p class="card-text text-secondary">Figure X</p>';
         
         card.appendChild(img);
         card.appendChild(body);
-        card.appendChild(footer);
         col.appendChild(card);
         
         // Resolve when image loads
@@ -89,14 +84,9 @@ function createDaysPlot(sensor) {
         
         const body = document.createElement('div');
         body.className = 'card-body'
-
-        const footer = document.createElement('div');
-        footer.className = 'card-footer text-center';
-        footer.innerHTML = '<p class="card-text text-secondary">Figure X</p>';
         
         card.appendChild(img);
         card.appendChild(body);
-        card.appendChild(footer);
         col.appendChild(card);
         
         // Resolve when image loads
@@ -130,7 +120,7 @@ function createFitPlot(sensor) {
 
         const footer = document.createElement('div');
         footer.className = 'card-footer text-center';
-        footer.innerHTML = '<p class="card-text text-secondary">Figure X<br>Note that pedestrian counts shown are a 2-week rolling average</p>';
+        footer.innerHTML = '<p class="card-text text-secondary">Note that pedestrian counts shown are a 2-week rolling average</p>';
         
         card.appendChild(img);
         card.appendChild(body);
