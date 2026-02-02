@@ -75,6 +75,9 @@
                     To analyse these changes, we used statistical models which account for both the widespread effects across the city, and location specific deviations from these trends. This approach recognises that different locations will have been impacted in different ways. In particular, we expect the increase in working from home to have disproportionately reduced the pedestrian traffic in areas with a concentration of offices.
                 </p>
                 <p>
+                    Because this analysis is based on observational data, many confounding factors are present and we cannot establish causality. However, it still offers valuable insight into how our city has changed across this pivotal time in recent history.
+                </p>
+                <p>
                     This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present an honest and balanced interpretation of my findings. If you notice any issues, please feel free to submit an issue on GitHub.
                 </p>
                 <p class="text-secondary">
@@ -93,10 +96,7 @@
                     <div class="card-body">
                         <h3 class="card-title">Melbourne is less busy than in 2019</h3>
                         <p class="card-text">
-                            Across the network, pedestrian counts have decreased significantly with Fridays in 2025 experiencing a 30.2%* reduction from their 2019 levels indicating a general reduction in activity across the city.
-                        </p>
-                        <p class="card-text text-secondary">
-                            *95% CI given by (20.5%, 38.7%)
+                            Across the network, pedestrian counts have decreased significantly with Fridays in 2025 experiencing a 34.9% reduction from their 2019 levels (see figure X) indicating a general reduction in activity across the city.                         <p class="card-text text-secondary">
                         </p>
                         <blockquote class="blockquote">
                             These Changes Were Not Felt Evenly Across the City
@@ -167,10 +167,42 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-5">
                 <div class="card h-100 pt-3">
                     <div class="card-body">
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo consequatur eos at quia rerum esse! Iure facere ratione, saepe blanditiis inventore rerum laudantium quasi minima veniam vel repudiandae aperiam fuga? Commodi, modi. Corrupti officiis rerum numquam ducimus necessitatibus culpa excepturi?</p>
+                        <blockquote class="blockquote">
+                            Weekdays Were the Most Impacted
+                        </blockquote>
+                        <p class="card-text">
+                            Changes in pedestrian activity between 2019 and 2025 vary substantially across the week. Weekdays experienced the largest decline with Mondays showing the steepest reduction with 2025 activity showing a 37.7% decrease. Midweek days were relatively more resilient, with Wednesday and Thursday declining by 31.6% and 32.5% respectively. This pattern may reflect workers opting to work from home on days at the start or end of the week. 
+                        </p>
+                        <p class="card-text">
+                            In contrast, weekend activity decreased to a lesser extent, with Saturday counts decreasing by only 19.0% from 2019 to 2025. This further supports the hypothesis that working from home is a major driver for the overall drop in pedestrian traffic.
+                        </p>
+                        <p class="card-text text-secondary">
+                            See figure X for approximate confidence intervals
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-4">
+                <div class="card h-100 pt-3">
+                    <img src="/days_ci.svg" class="card-img-top"
+                        alt="Map showing diffence in pedestrian traffic on weekdays vs weekends">
+                    <div class="card-body"></div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="card h-100 pt-3">
+                    <img src="/change_by_day_type.svg" class="card-img-top"
+                        alt="Plot of change in pedestrian traffic on weekdays, weekends and average">
+                    <div class="card-body"></div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-secondary">Figure X <sup class="text-primary"><a
+                                    href="#non-linear-ci">1</a></sup></p>
                     </div>
                 </div>
             </div>
@@ -184,17 +216,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-lg-4">
-                <div class="card h-100 pt-3">
-                    <img src="/change_by_day_type.svg" class="card-img-top"
-                        alt="Plot of change in pedestrian traffic on weekdays, weekends and average">
-                    <div class="card-body"></div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-secondary">Figure X <sup class="text-primary"><a
-                                    href="#non-linear-ci">1</a></sup></p>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-12 col-lg-8">
                 <div class="card h-100 pt-3">
                     <img src="/day_effects.svg" class="card-img-top"
@@ -314,7 +336,7 @@
                                     <li>Day‑of‑week differences remain consistent between 2019 and 2025 (parralel lines within groups).</li>
                                     <li>Sensors can be differently affected by the change from 2019 to 2025 (each group has a unique slope).</li>
                                 </ul>
-                                <p>We can model this as:</p>
+                                <p class="card-text">We can model this as:</p>
                                 <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus \text{Friday}} {(\beta_d\, \mathbb{1}_{t \in D})} + b_{0,i} + b_{1,i}\,\text{Year}_t + \varepsilon_{i,t}\]</p>
                                 <p class="card-text">
                                     Here \(y_{i,t}\) is the daily count at sensor \(i\) on day \(t\), and \(\text{Year}_t\) is an indicator for the year 2025 (\(0\) for 2019, \(1\) for 2025).
@@ -396,11 +418,11 @@
                                     This final model further relaxes the structure of the random effects, allowing pedestrian count patterns to vary by location
                                     while retaining a common day-of-week structure across the population.
                                 </p>
-                                <p>
+                                <p class="card-text">
                                     To improve model stability and avoid overfitting, we introduce a binary random effect distinguishing weekends from weekdays via the indicator $\text{Weekend}_t$.
                                     Rather than allowing fully day-specific random effects, this specification captures location-specific deviations in weekend behaviour while maintaining reliable convergence.
                                 </p>
-                                <p>
+                                <p class="card-text">
                                     In particular, this model allows us to investigate how changes in behaviour from 2019 and 2025
                                     (such as increased working from home) uniquely affect weekend and weekday pedestrian activity across locations.
                                 </p>
@@ -463,10 +485,10 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p>
+                                <p class="card-text">
                                     As can be seen by the significant improvement from model 2 to 3, heterogeneity in how locations responded to Covid on Weekdays vs Weekends is pertinent to our data.
                                 </p>
-                                <p>
+                                <p class="card-text">
                                     After performing this validation, the model was refit using <a href="Restricted_maximum_likelihood">restricted maximum likelihood</a> (REML) for a less biased fit.<br>The results of this are shown in figure X.
                                 </p>
                             </div>
@@ -538,13 +560,13 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                                 <p class="card-text">
                                     In this first model we assume every sensor shares a common day-of-week pattern while
                                     allowing a unique response to year. The key assumptions here are that:
+                                </p>
                                 <ul>
                                     <li>The relative differences between days of the week stay constant across 2019 and 2025.
                                     </li>
                                     <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
                                         or less effected).</li>
                                 </ul>
-                                </p>
                                 <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
                                     \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
                                     \varepsilon_{i,t}\]</p>
@@ -591,13 +613,13 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                         <p class="card-text">
                             In this first model we assume every sensor shares a common day-of-week pattern while
                             allowing a unique response to year. The key assumptions here are that:
+                        </p>
                         <ul>
                             <li>The relative differences between days of the week stay constant across 2019 and 2025.
                             </li>
                             <li>Sensors have unique responses to the change in year (some areas of Melbourne may be more
                                 or less effected).</li>
                         </ul>
-                        </p>
                         <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
                             \setminus \text{Friday}} {(\beta_d 1_{t \in D})} + b_{0,i} + b_{1,i} \text{Year}_t +
                             \varepsilon_{i,t}\]</p>
