@@ -13,7 +13,7 @@
 
     <script>
         MathJax = {
-            loader: {load: ['[tex]/color']},
+            loader: { load: ['[tex]/color'] },
             tex: {
                 macros: {
                     RR: '{\\bf R}',
@@ -28,7 +28,7 @@
                 },
                 inlineMath: { '[+]': [['$', '$']] },
                 displayMath: [['\\[', '\\]']],
-                packages: {'[+]': ['color']}
+                packages: { '[+]': ['color'] }
             },
             chtml: {
                 displayOverflow: 'linebreak',  // break long lines
@@ -58,14 +58,17 @@
             <div class="col-12 col-lg-9">
                 <h1 class="display-3">Melbourne Pedestrian Behaviour</h1>
             </div>
-            <div class="col-12 col-lg-3 d-flex flex-nowrap align-items-center justify-content-center justify-content-lg-end gap-2">
+            <div
+                class="col-12 col-lg-3 d-flex flex-nowrap align-items-center justify-content-center justify-content-lg-end gap-2">
                 <a href="https://ottoesperson.com" class="btn btn-outline-primary" title="Home">
                     <i class="bi bi-house-fill"></i>
                 </a>
-                <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap" title="Follow on GitHub">
+                <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap"
+                    title="Follow on GitHub">
                     <i class="bi bi-github"></i> <span class="d-none d-sm-inline">@ottoesp</span>
                 </a>
-                <a href="https://github.com/ottoesp/melbournepedestrianinvestigation" class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
+                <a href="https://github.com/ottoesp/melbournepedestrianinvestigation"
+                    class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
                     <i class="bi bi-star-fill"></i>
                 </a>
             </div>
@@ -75,16 +78,28 @@
             <div class="col-12">
                 <p class="h3">What is this website about?</p>
                 <p>
-                    This website explores how pedestrian activity across Melbourne has changed since before the COVID-19 pandemic, using data from The City of Melbourne Pedestrian Counting System. This system forms a network of sensors across the inner city, recording hourly pedestrian volumes at each location. By comparing pre-pandemic data from 2019 with more recent observations in 2025 this project aims to quantify how pedestrian movement has changed over these years. 
+                    This website explores how pedestrian activity across Melbourne has changed since before the COVID-19
+                    pandemic, using data from The City of Melbourne Pedestrian Counting System. This system forms a
+                    network of sensors across the inner city, recording hourly pedestrian volumes at each location. By
+                    comparing pre-pandemic data from 2019 with more recent observations in 2025 this project aims to
+                    quantify how pedestrian movement has changed over these years.
                 </p>
                 <p>
-                    To analyse these changes, we used statistical models which account for both the widespread effects across the city, and location specific deviations from these trends. This approach recognises that different locations will have been impacted in different ways. In particular, we expect the increase in working from home to have disproportionately reduced the pedestrian traffic in areas with a concentration of offices.
+                    To analyse these changes, we used statistical models which account for both the widespread effects
+                    across the city, and location specific deviations from these trends. This approach recognises that
+                    different locations will have been impacted in different ways. In particular, we expect the increase
+                    in working from home to have disproportionately reduced the pedestrian traffic in areas with a
+                    concentration of offices.
                 </p>
                 <p>
-                    Because this analysis is based on observational data, many confounding factors are present and we cannot establish causality. However, it still offers valuable insight into how our city has changed across this pivotal time in recent history.
+                    Because this analysis is based on observational data, many confounding factors are present and we
+                    cannot establish causality. However, it still offers valuable insight into how our city has changed
+                    across this pivotal time in recent history.
                 </p>
                 <p>
-                    This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present an honest and balanced interpretation of my findings. If you notice any issues, please feel free to submit an issue on GitHub :)
+                    This page is a hobby project, and part of my ongoing learning in statistics. I have aimed to present
+                    an honest and balanced interpretation of my findings. If you notice any issues, please feel free to
+                    submit an issue on GitHub :)
                 </p>
                 <p class="text-secondary">
                     Data on pedestrian counts is obtained from <a
@@ -102,20 +117,31 @@
                     <div class="card-body">
                         <h3 class="card-title">Melbourne is less busy than in 2019</h3>
                         <p class="card-text">
-                            Across the network, pedestrian counts have decreased significantly with Fridays in 2025 experiencing a 34.9% reduction from their 2019 levels (Figure 1.4) indicating a general reduction in activity across the city.                         <p class="card-text text-secondary">
+                            Across the network, pedestrian counts have decreased significantly with Fridays in 2025
+                            experiencing a 34.9% reduction from their 2019 levels (Figure 1.4) indicating a general
+                            reduction in activity across the city.
+                        <p class="card-text text-secondary">
                         </p>
                         <blockquote class="blockquote">
                             These Changes Were Not Felt Evenly Across the City
                         </blockquote>
                         <p class="card-text">
-                            Figure 1.2 maps the change in pedestrian activity from 2019 to 2025. While most locations experienced declines, the magnitude of these changes varied significantly. We can see some of the largest decreases were felt south of Londsdale St with activity at Burke St Mall decreasing by 66.9%. However, the northern CBD around Melbourne Central and RMIT were relatively less impacted with some locations seeing increases in activity. 
+                            Figure 1.2 maps the change in pedestrian activity from 2019 to 2025. While most locations
+                            experienced declines, the magnitude of these changes varied significantly. We can see some
+                            of the largest decreases were felt south of Londsdale St with activity at Burke St Mall
+                            decreasing by 66.9%. However, the northern CBD around Melbourne Central and RMIT were
+                            relatively less impacted with some locations seeing increases in activity.
                         </p>
 
                         <p class="card-text">
-                            This may be partially attributed to working at home which caused locations with many offices to experience less pedestrian traffic. We further investigate this effect as we discuss how different days of the week have been affected.
+                            This may be partially attributed to working at home which caused locations with many offices
+                            to experience less pedestrian traffic. We further investigate this effect as we discuss how
+                            different days of the week have been affected.
                         </p>
                         <p class="card-text">
-                            It is important to note that sensors do not provide even coverage of the entire CBD (notably between Queen and King Street) and so we cannot draw conclusions for areas without sensor coverage.
+                            It is important to note that sensors do not provide even coverage of the entire CBD (notably
+                            between Queen and King Street) and so we cannot draw conclusions for areas without sensor
+                            coverage.
                         </p>
                     </div>
                 </div>
@@ -180,10 +206,17 @@
                             Weekdays Were the Most Impacted
                         </blockquote>
                         <p class="card-text">
-                            Changes in pedestrian activity between 2019 and 2025 vary substantially across the week. Weekdays experienced the largest decline with Mondays showing the steepest reduction with 2025 activity showing a 37.7% decrease. Midweek days were relatively more resilient, with Wednesday and Thursday declining by 31.6% and 32.5% respectively (Figure 1.4). This pattern may reflect workers opting to work from home on days at the start or end of the week. 
+                            Changes in pedestrian activity between 2019 and 2025 vary substantially across the week.
+                            Weekdays experienced the largest decline with Mondays showing the steepest reduction with
+                            2025 activity showing a 37.7% decrease. Midweek days were relatively more resilient, with
+                            Wednesday and Thursday declining by 31.6% and 32.5% respectively (Figure 1.4). This pattern
+                            may reflect workers opting to work from home on days at the start or end of the week.
                         </p>
                         <p class="card-text">
-                            In contrast, weekend activity decreased to a lesser extent (Figure 1.5), with Saturday counts decreasing by only 19.0% from 2019 to 2025 (Figure 1.4). This further supports the hypothesis that working from home is a major driver for the overall drop in pedestrian traffic.
+                            In contrast, weekend activity decreased to a lesser extent (Figure 1.5), with Saturday
+                            counts decreasing by only 19.0% from 2019 to 2025 (Figure 1.4). This further supports the
+                            hypothesis that working from home is a major driver for the overall drop in pedestrian
+                            traffic.
                         </p>
                     </div>
                 </div>
@@ -194,7 +227,8 @@
                         alt="Map showing diffence in pedestrian traffic on weekdays vs weekends">
                     <div class="card-body"></div>
                     <div class="card-footer text-center">
-                        <p class="card-text text-secondary">Figure 1.4 - Approximate confidence intervals derived with delta method</p>
+                        <p class="card-text text-secondary">Figure 1.4 - Approximate confidence intervals derived with
+                            delta method</p>
                     </div>
                 </div>
             </div>
@@ -218,7 +252,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 col-lg-8">
                 <div class="card h-100 pt-3">
                     <img src="/day_effects.svg" class="card-img-top"
@@ -230,7 +264,7 @@
                 </div>
             </div>
 
-            
+
         </div>
 
         <div class="row mb-5 g-3">
@@ -274,15 +308,19 @@
             <h3 class="col-12 mt-3">Introduction</h3>
             <div class="col-12">
                 <div class="row g-3 justify-content-center">
-                    <div class="col-12 col-lg-6">
-                        <div class="card h-100">
+                    <div class="col-12 col-lg-5">
+                        <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Linear Mixed Models</h5>
                                 <p class="card-text">
-                                    Linear mixed models (LMMs) extend simple linear models by allowing for both fixed and random effects. This is important when observations are dependent. In our case, multiple readings from the same sensor are inherently correlated which violates the independence assumption of ordinary linear models.
+                                    Linear mixed models (LMMs) extend simple linear models by allowing for both fixed
+                                    and random effects. This is important when observations are dependent. In our case,
+                                    multiple readings from the same sensor are inherently correlated which violates the
+                                    independence assumption of ordinary linear models.
                                 </p>
                                 <p class="card-text">
-                                    By including random effects, LMMs allow for sensor-to-sensor deviation while still being able to analyse the population level trends. 
+                                    By including random effects, LMMs allow for sensor-to-sensor deviation while still
+                                    being able to analyse the population level trends.
                                 </p>
                                 <p class="card-text">
                                     Formally, we model this as
@@ -292,48 +330,95 @@
                                 </p>
                                 <p class="card-text">
                                     where
-                                    <ul>
-                                        <li>
-                                            $\bbeta$ is a vector of fixed effects,
-                                        </li>
-                                        <li>
-                                            $X$ and $Z$ are the design matrices of the fixed and random effects respectively,
-                                        </li>
-                                        <li>
-                                            $\b$ is a vector of random effects with multivariate normal distribution with covariance matrix $G$, $\b \sim \norm{\boldsymbol 0}{G}$,
-                                        </li>
-                                        <li>
-                                            $\boldsymbol \varepsilon$ is a vector of residual errors assumed to be multivariate normally distributed $\norm{\boldsymbol 0} {\sigma^2 I}$ capturing variation that is not explained by the model.
-                                        </li>
-                                    </ul>
+                                <ul>
+                                    <li>
+                                        $\bbeta$ is a vector of fixed effects,
+                                    </li>
+                                    <li>
+                                        $X$ and $Z$ are the design matrices of the fixed and random effects
+                                        respectively,
+                                    </li>
+                                    <li>
+                                        $\b$ is a vector of random effects with multivariate normal distribution with
+                                        covariance matrix $G$, $\b \sim \norm{\boldsymbol 0}{G}$,
+                                    </li>
+                                    <li>
+                                        $\boldsymbol \varepsilon$ is a vector of residual errors assumed to be
+                                        multivariate normally distributed $\norm{\boldsymbol 0} {\sigma^2 I}$ capturing
+                                        variation that is not explained by the model.
+                                    </li>
+                                </ul>
                                 </p>
                                 <p class="card-text">
-                                    This formulation properly accounts for the heterogeneity of pedestrian activity across many locations.
+                                    This formulation properly accounts for the heterogeneity of pedestrian activity
+                                    across many locations.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-7">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Lognormally Distributed Data</h5>
                                 <p class="card-text">
-                                    The lognormal distribution is often a natural model for non-negative data that arises from multiplicative processes. 
+                                    The lognormal distribution is often a natural model for non-negative data that
+                                    arises from multiplicative processes.
                                 </p>
                                 <p class="card-text">
-                                    In our dataset, a histogram of mean daily counts at each sensor (Figure 3.1, Plot 1) reveals a heavily positive skewed and non-normal distribution. This violates the assumption of our mixed linear model that  $\b \sim \norm{\boldsymbol 0}{G}$, encouraging a transformation.
+                                    In our dataset, a histogram of mean daily counts at each sensor (Figure 3.1, Plot 1)
+                                    reveals a heavily positive skewed and non-normal distribution. This violates the
+                                    assumption of our mixed linear model that $\b \sim \norm{\boldsymbol 0}{G}$,
+                                    encouraging a transformation.
                                 </p>
                                 <p class="card-text">
-                                    Applying a log transformation to these daily counts (Figure 3.1, Plot 2) substantially improves, symmetry producing a plot that is closer to normal. This is formally described as
+                                    Applying a log transformation to these daily counts (Figure 3.1, Plot 2)
+                                    substantially improves, symmetry producing a plot that is closer to normal. This is
+                                    formally described as
                                 </p>
                                 <p class="card-text">
                                     \[\log\boldsymbol y = X\bbeta\ + Z\b + \boldsymbol \varepsilon. \]
                                 </p>
                                 <p class="card-text">
-                                    Despite this improvement, there is a significant heavy left tail, highlighted in the Q-Q plot (Figure 3.2), indicating that the log-transformed data is not perfectly normal. This suggests that although the log transformation has improved our model, some caution must be taken when applying methods that rely on the normality assumption.
+                                    Despite this improvement, there is a significant heavy left tail, highlighted in the
+                                    Q-Q plot (Figure 3.2), indicating that the log-transformed data is not perfectly
+                                    normal. This suggests that although the log transformation has improved our model,
+                                    some caution must be taken when applying methods that rely on the normality
+                                    assumption.
                                 </p>
                                 <p class="card-text">
-                                    One possible improvement to this study would be to apply a general mixed linear model with a better fitting distribution such as a negative binomial. 
+                                    One possible improvement to this study would be to apply a general mixed linear
+                                    model with a better fitting distribution such as a negative binomial.
+                                </p>
+                                <p class="card-text">
+                                    For log transformed data it is important to be careful when calculating statistics
+                                    about the original distribution. One pervasive case in this investigation is
+                                    Jensen’s Inequality $e^{E[X]} \neq E[e^X]$. Below are two examples of the
+                                    convexivity
+                                    corrections that arrise from trying to find the expectation of pedestrian counts
+                                    $y_{ij}$ for some sensor $i$ and observation $j$.
+                                </p>
+                                <p class="card-text">
+                                    \[\log y_{ij} = \boldsymbol{x}^T_j\bbeta + \boldsymbol{z}^T_j\b_i +
+                                    \varepsilon_{ij}\]
+                                    \[y_{ij} = \exp\{\boldsymbol{x}^T_j\bbeta + \boldsymbol{z}^T_j\b_i +
+                                    \varepsilon_{ij} \}\]
+                                    We can take the expectation with respect to a single sensor $i$ with effects $\b_i$,
+                                    \[E[y_j|\b_i] = E[\exp\{\boldsymbol{x}^T_j\bbeta + \boldsymbol{z}^T_j\b_i +
+                                    \varepsilon_{ij} \} | \b_i]\]
+                                    Since both $\bbeta$ and $\b_i$ are fixed they can be taken out of the expectation.
+                                    Moreover since the residual is independent of the random effects, the conditional
+                                    can be dropped.
+                                    \[= \exp\{\boldsymbol{x}^T_j\bbeta + \boldsymbol{z}^T_j\b_i \} \cdot
+                                    E[e^{\varepsilon_{ij}}]\]
+                                    The residual part may be recognised as the moment generating function of a normal
+                                    random variable,
+                                    \[= \exp\{\boldsymbol{x}^T_j\bbeta + \boldsymbol{z}^T_j\b_i \} \cdot e^{\frac
+                                    {\sigma^2} {2}}\]
+                                    By a similar analysis for the marginal expectation we find, using the fact that the
+                                    sum of independent normals is also normal, that $E[y_{ij}] =
+                                    \exp\{\boldsymbol{x}^T_j\bbeta\} \cdot \exp\{\frac 1
+                                    2(\boldsymbol{z}^T_jG\boldsymbol{z}_j + \sigma^2)\}$ where we also have that extra
+                                    exponentiated factor.
                                 </p>
                             </div>
                         </div>
@@ -358,25 +443,33 @@
                     </div>
                 </div>
             </div>
-            
+
             <h3 class="col-12 mt-5">Model Selection</h3>
             <div class="col-12">
                 <div class="row g-3 justify-content-center">
                     <div class="col-12 col-md-8 col-lg-9">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">First Model - Common day structure, sensor‑specific year response</h5>
+                                <h5 class="card-title">First Model - Common day structure, sensor‑specific year response
+                                </h5>
                                 <p class="card-text">
-                                    This model assumes all sensors share a common weekly pattern, while each sensor has its own response to year. Key points:
+                                    This model assumes all sensors share a common weekly pattern, while each sensor has
+                                    its own response to year. Key points:
                                 </p>
                                 <ul>
-                                    <li>Day‑of‑week differences remain consistent between 2019 and 2025 (parralel lines within groups).</li>
-                                    <li>Sensors can be differently affected by the change from 2019 to 2025 (each group has a unique slope).</li>
+                                    <li>Day‑of‑week differences remain consistent between 2019 and 2025 (parralel lines
+                                        within groups).</li>
+                                    <li>Sensors can be differently affected by the change from 2019 to 2025 (each group
+                                        has a unique slope).</li>
                                 </ul>
                                 <p class="card-text">We can model this as:</p>
-                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus \text{Friday}} {(\beta_d\, \mathbb{1}_{t \in D})} + b_{0,i} + b_{1,i}\,\text{Year}_t + \varepsilon_{i,t}\]</p>
+                                <p class="card-text">\[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in
+                                    \text{days}\setminus \text{Friday}} {(\beta_d\, \mathbb{1}_{t \in D})} + b_{0,i} +
+                                    b_{1,i}\,\text{Year}_t + \varepsilon_{i,t}\]</p>
                                 <p class="card-text">
-                                    Here \(y_{i,t}\) is the daily count at sensor \(i\) on day \(t\), and \(\text{Year}_t\) is an indicator for the year 2025 (\(0\) for 2019, \(1\) for 2025).
+                                    Here \(y_{i,t}\) is the daily count at sensor \(i\) on day \(t\), and
+                                    \(\text{Year}_t\) is an indicator for the year 2025 (\(0\) for 2019, \(1\) for
+                                    2025).
                                 </p>
 
                                 <p class="card-text">Fixed effects</p>
@@ -390,7 +483,8 @@
                                 <ul>
                                     <li>\(b_{0,i}\): Sensor‑specific deviation from \(\beta_0\).</li>
                                     <li>\(b_{1,i}\): Sensor‑specific deviation in the year effect \(\beta_1\).</li>
-                                    <li>\(\varepsilon_{i,t}\): Random error, \(\varepsilon_{i,t} \sim N(0, \sigma^2)\).</li>
+                                    <li>\(\varepsilon_{i,t}\): Random error, \(\varepsilon_{i,t} \sim N(0, \sigma^2)\).
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -401,7 +495,8 @@
                             <div class="card-body">
                             </div>
                             <div class="card-footer text-center">
-                                <p class="card-text text-secondary">Figure 3.3 - illustration of first model structure</p>
+                                <p class="card-text text-secondary">Figure 3.3 - illustration of first model structure
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -413,9 +508,10 @@
                     <div class="col-6 col-md-4 col-lg-3 order-2 order-sm-1">
                         <div class="card pt-3">
                             <img src="/exploration_model2.svg" class="card-img">
-                                    <div class="card-body"></div>
+                            <div class="card-body"></div>
                             <div class="card-footer text-center">
-                                <p class="card-text text-secondary">Figure 3.4 - illustration of second model structure</p>
+                                <p class="card-text text-secondary">Figure 3.4 - illustration of second model structure
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -424,20 +520,30 @@
                             <div class="card-body">
                                 <h5 class="card-title">Second Model - Day Specific Year Effects</h5>
                                 <p class="card-text">
-                                    In this model we relax the assumption that the weekly structure is constant across 2019 and 2025. 
-                                    We introduce a fixed interaction effect (highlighted below in blue) which models how different days 
+                                    In this model we relax the assumption that the weekly structure is constant across
+                                    2019 and 2025.
+                                    We introduce a fixed interaction effect (highlighted below in blue) which models how
+                                    different days
                                     have been affected over time.
                                 </p>
                                 <p class="card-text">
-                                    This is motivated by real-world understanding: the COVID-19 pandemic introduced working-from-home 
-                                    measures that have remained in place, suggesting weekdays might be more affected from 2019 to 2025.
+                                    This is motivated by real-world understanding: the COVID-19 pandemic introduced
+                                    working-from-home
+                                    measures that have remained in place, suggesting weekdays might be more affected
+                                    from 2019 to 2025.
                                 </p>
                                 <p class="card-text">
-                                    Importantly, in this model, the interaction effect is still constant across sensors (size of deviation in slope for each day is shared across groups), meaning all areas of Melbourne are 
-                                    modeled as equally affected. This assumption is relaxed in model 3 to allow for location-specific variability.
+                                    Importantly, in this model, the interaction effect is still constant across sensors
+                                    (size of deviation in slope for each day is shared across groups), meaning all areas
+                                    of Melbourne are
+                                    modeled as equally affected. This assumption is relaxed in model 3 to allow for
+                                    location-specific variability.
                                 </p>
                                 <p class="card-text">
-                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days} \setminus \text{Friday}} {(\beta_d \mathbb 1_{t \in D})} + {\color{#0d6efd}\sum_{D \in \text{days} \setminus \text{Friday}} {(\beta_{d \times Year} (\text{Year} \cdot \mathbb 1_{t \in D}))}} + b_{0,i} + b_{1,i} \text{Year}_t + \varepsilon_{i,t}\]
+                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}
+                                    \setminus \text{Friday}} {(\beta_d \mathbb 1_{t \in D})} + {\color{#0d6efd}\sum_{D
+                                    \in \text{days} \setminus \text{Friday}} {(\beta_{d \times Year} (\text{Year} \cdot
+                                    \mathbb 1_{t \in D}))}} + b_{0,i} + b_{1,i} \text{Year}_t + \varepsilon_{i,t}\]
                                 </p>
                             </div>
                         </div>
@@ -452,21 +558,30 @@
                             <div class="card-body">
                                 <h5 class="card-title">Final Model - Sensor‑specific Weekend Effects</h5>
                                 <p class="card-text">
-                                    This final model further relaxes the structure of the random effects, allowing pedestrian count patterns to vary by location
+                                    This final model further relaxes the structure of the random effects, allowing
+                                    pedestrian count patterns to vary by location
                                     while retaining a common day-of-week structure across the population.
                                 </p>
                                 <p class="card-text">
-                                    To improve model stability and avoid overfitting, we introduce a binary random effect distinguishing weekends from weekdays via the indicator $\text{Weekend}_t$.
-                                    Rather than allowing fully day-specific random effects, this specification captures location-specific deviations in weekend behaviour while maintaining reliable convergence.
+                                    To improve model stability and avoid overfitting, we introduce a binary random
+                                    effect distinguishing weekends from weekdays via the indicator $\text{Weekend}_t$.
+                                    Rather than allowing fully day-specific random effects, this specification captures
+                                    location-specific deviations in weekend behaviour while maintaining reliable
+                                    convergence.
                                 </p>
                                 <p class="card-text">
-                                    In particular, this model allows us to investigate how changes in behaviour from 2019 and 2025
-                                    (such as increased working from home) uniquely affect weekend and weekday pedestrian activity across locations.
+                                    In particular, this model allows us to investigate how changes in behaviour from
+                                    2019 and 2025
+                                    (such as increased working from home) uniquely affect weekend and weekday pedestrian
+                                    activity across locations.
                                 </p>
                                 <p class="card-text">
-                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus \text{Friday}} (\beta_d\, \mathbb{1}_{t \in D})
-                                    + \sum_{D \in \text{days}\setminus \text{Friday}} (\beta_{d \times \text{Year}} (\text{Year}_t \cdot \mathbb{1}_{t \in D})) \\
-                                    + b_{0,i} + b_{1,i}\,\text{Year}_t + {\color{#0d6efd}b_{2,i}\,\text{Weekend}_t} + {\color{#0d6efd}b_{3,i}(\text{Year}_t \cdot \text{Weekend}_t)} + \varepsilon_{i,t}\]
+                                    \[\log(y_{i,t}) = \beta_0 + \beta_1 \text{Year}_t + \sum_{D \in \text{days}\setminus
+                                    \text{Friday}} (\beta_d\, \mathbb{1}_{t \in D})
+                                    + \sum_{D \in \text{days}\setminus \text{Friday}} (\beta_{d \times \text{Year}}
+                                    (\text{Year}_t \cdot \mathbb{1}_{t \in D})) \\
+                                    + b_{0,i} + b_{1,i}\,\text{Year}_t + {\color{#0d6efd}b_{2,i}\,\text{Weekend}_t} +
+                                    {\color{#0d6efd}b_{3,i}(\text{Year}_t \cdot \text{Weekend}_t)} + \varepsilon_{i,t}\]
                                 </p>
                             </div>
                         </div>
@@ -474,9 +589,10 @@
                     <div class="col-6 col-md-4 col-lg-3">
                         <div class="card pt-3">
                             <img src="/exploration_model3.svg" class="card-img">
-                                    <div class="card-body"></div>
+                            <div class="card-body"></div>
                             <div class="card-footer text-center">
-                                <p class="card-text text-secondary">Figure 3.5 - illustration of final model structure</p>
+                                <p class="card-text text-secondary">Figure 3.5 - illustration of final model structure
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -489,45 +605,51 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Evaluating Models</h3>
-                                <p class="card-text">
-                                    After fitting each of these models with maximum likelihood, I evaluated their fit by comparing their 
-                                    <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike information criterion</a> (AIC). 
-                                </p>
-                                <p class="card-text text-secondary">
-                                    AIC of models (lower is better)
-                                </p>
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Model</th>
-                                            <th scope="col">AIC</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Model 1: Common day structure, sensor-specific year</td>
-                                            <td>55187.80</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Model 2: Day-specific year effects</td>
-                                            <td>55024.57</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Model 3: Sensor-specific weekend effects</td>
-                                            <td>47201.61</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alternative: Day-specific random effects</td>
-                                            <td>47638.51</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p class="card-text">
-                                    As can be seen by the significant improvement from model 2 to 3, heterogeneity in how locations responded to Covid on Weekdays vs Weekends is pertinent to our data.
-                                </p>
-                                <p class="card-text">
-                                    After performing this validation, the model was refit using <a href="Restricted_maximum_likelihood">restricted maximum likelihood</a> (REML) for a less biased fit.<br>The results of this are shown in Figure 3.6.
-                                </p>
+                                    <p class="card-text">
+                                        After fitting each of these models with maximum likelihood, I evaluated their
+                                        fit by comparing their
+                                        <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike
+                                            information criterion</a> (AIC).
+                                    </p>
+                                    <p class="card-text text-secondary">
+                                        AIC of models (lower is better)
+                                    </p>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Model</th>
+                                                <th scope="col">AIC</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Model 1: Common day structure, sensor-specific year</td>
+                                                <td>55187.80</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model 2: Day-specific year effects</td>
+                                                <td>55024.57</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model 3: Sensor-specific weekend effects</td>
+                                                <td>47201.61</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alternative: Day-specific random effects</td>
+                                                <td>47638.51</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="card-text">
+                                        As can be seen by the significant improvement from model 2 to 3, heterogeneity
+                                        in how locations responded to Covid on Weekdays vs Weekends is pertinent to our
+                                        data.
+                                    </p>
+                                    <p class="card-text">
+                                        After performing this validation, the model was refit using <a
+                                            href="Restricted_maximum_likelihood">restricted maximum likelihood</a>
+                                        (REML) for a less biased fit.<br>The results of this are shown in Figure 3.6.
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -584,40 +706,58 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12">
                 <div class="row g-3">
                     <h3 class="col-12 mt-5">Model Diagnostics</h3>
                     <div class="col-12 col-lg-8">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response</h5>
+                                <h5 class="card-title">First Model - Common day structure, Sensor Specific Year Response
+                                </h5>
                                 <p class="card-text">
-                                    This model faces some non-trivial deviations from our assumptions, which we investigate using diagnostic plots. 
+                                    This model faces some non-trivial deviations from our assumptions, which we
+                                    investigate using diagnostic plots.
                                 </p>
                                 <blockquote class="blockquote">
                                     Heavy Left-Tail
                                 </blockquote>
                                 <p class="card-text">
-                                    The Q-Q plot of residuals (Figure 3.7) indicates a heavy left-tailed in our data. The sharp dip on the left side of the plot indicates that the model overestimates the pedestrian activity of the lowest readings. This behaviour is also visible in the plot of residuals against fitted values (Figure 3.8) where we see more negative than positive residuals. Together these diagnostics indicate that the model struggles to represent periods of low pedestrian activity. 
+                                    The Q-Q plot of residuals (Figure 3.7) indicates a heavy left-tailed in our data.
+                                    The sharp dip on the left side of the plot indicates that the model overestimates
+                                    the pedestrian activity of the lowest readings. This behaviour is also visible in
+                                    the plot of residuals against fitted values (Figure 3.8) where we see more negative
+                                    than positive residuals. Together these diagnostics indicate that the model
+                                    struggles to represent periods of low pedestrian activity.
                                 </p>
                                 <blockquote class="blockquote">
                                     Heteroskedasticity
                                 </blockquote>
                                 <p class="card-text">
-                                    Figure 3.8 additionally reveals a fanning effect at the higher end of fitted values, indicating heteroskedasticity. This pattern likely arises from the log transformation where the variance in pedestrian counts does not increase at the same rate as the mean.
+                                    Figure 3.8 additionally reveals a fanning effect at the higher end of fitted values,
+                                    indicating heteroskedasticity. This pattern likely arises from the log
+                                    transformation where the variance in pedestrian counts does not increase at the same
+                                    rate as the mean.
                                 </p>
                                 <blockquote class="blockquote">
                                     Random Effects
                                 </blockquote>
                                 <p class="card-text">
-                                    In contrast the Q-Q plots of random effects (Figure 3.9) show substantially better agreement with the normal assumption.  Despite some deviation, the random effects appear to be roughly normal. This indicates that model error predominantly arises from observation level structure rather than specification of random effects.
+                                    In contrast the Q-Q plots of random effects (Figure 3.9) show substantially better
+                                    agreement with the normal assumption. Despite some deviation, the random effects
+                                    appear to be roughly normal. This indicates that model error predominantly arises
+                                    from observation level structure rather than specification of random effects.
                                 </p>
                                 <p class="card-text">
-                                    Overall, the diagnostic plots reveal some departure from the LMM assumptions, particularly at low pedestrian counts. These limitations reflect challenges with modelling log-transformed count data and could be further addressed by a general linear mixed model.
+                                    Overall, the diagnostic plots reveal some departure from the LMM assumptions,
+                                    particularly at low pedestrian counts. These limitations reflect challenges with
+                                    modelling log-transformed count data and could be further addressed by a general
+                                    linear mixed model.
                                 </p>
                                 <p class="card-text">
-                                    Despite these issues, the model is sufficient for the purposes of this investigation to adequately capture the dominant patterns in the data at both a location specific and Melbourne wide level. 
+                                    Despite these issues, the model is sufficient for the purposes of this investigation
+                                    to adequately capture the dominant patterns in the data at both a location specific
+                                    and Melbourne wide level.
                                 </p>
                             </div>
                         </div>
@@ -670,17 +810,21 @@ is_weekend[T.True]:year[T.2025] Var                       0.022    0.012
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h6>Data</h6>
                     <p class="text-secondary small">
-                        Pedestrian counting data provided by <a href="https://melbournetestbed.opendatasoft.com/pages/home/" class="text-primary">The City of Melbourne</a>
+                        Pedestrian counting data provided by <a
+                            href="https://melbournetestbed.opendatasoft.com/pages/home/" class="text-primary">The City
+                            of Melbourne</a>
                     </p>
                 </div>
                 <div class="col-12 col-md-4 d-flex flex-nowrap align-items-center justify-content-center gap-2">
                     <a href="https://ottoesperson.com" class="btn btn-outline-primary" title="Home">
                         <i class="bi bi-house-fill"></i>
                     </a>
-                    <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap" title="Follow on GitHub">
+                    <a href="https://github.com/ottoesp" class="btn btn-outline-primary text-nowrap"
+                        title="Follow on GitHub">
                         <i class="bi bi-github"></i> <span class="d-none d-sm-inline">@ottoesp</span>
                     </a>
-                    <a href="https://github.com/ottoesp/melbournepedestrianinvestigation" class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
+                    <a href="https://github.com/ottoesp/melbournepedestrianinvestigation"
+                        class="btn btn-outline-primary text-nowrap" title="Star on GitHub">
                         <i class="bi bi-star-fill"></i>
                     </a>
                 </div>
